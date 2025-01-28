@@ -32,10 +32,30 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "node_modules/@expo-google-fonts/fira-code/FiraCode_300Light.ttf",
+            "node_modules/@expo-google-fonts/fira-code/FiraCode_400Regular.ttf",
+            "node_modules/@expo-google-fonts/fira-code/FiraCode_500Medium.ttf",
+            "node_modules/@expo-google-fonts/fira-code/FiraCode_600SemiBold.ttf",
+            "node_modules/@expo-google-fonts/fira-code/FiraCode_700Bold.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "9034c43e-9b77-4771-b8d8-57bb7135f13d"
+      }
     }
   }
 }
