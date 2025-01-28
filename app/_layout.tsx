@@ -1,8 +1,10 @@
-import { Drawer } from 'expo-router/drawer';
+import { Drawer } from "expo-router/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function RootLayout() {
-  return (<GestureHandlerRootView style={{ flex: 1 }}>
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <Drawer />
-    </GestureHandlerRootView>)
+    </GestureHandlerRootView>
+  );
 }
