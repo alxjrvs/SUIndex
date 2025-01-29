@@ -1,8 +1,9 @@
 import { DarkTheme, Theme } from '@react-navigation/native'
-import colors from './colors'
+import colors from '../colors'
 import { Platform } from 'react-native'
 
-const WEB_FONT_STACK = '"Fira Code", Monaco, Consolas, "Ubuntu Mono", monospace'
+export const WEB_FONT_STACK =
+  '"Fira Code", Monaco, Consolas, "Ubuntu Mono", monospace'
 
 export const fonts = Platform.select({
   web: {

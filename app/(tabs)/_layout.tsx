@@ -3,9 +3,9 @@ import { Tabs } from 'expo-router'
 
 export default function TabLayout() {
   return (
-    <Tabs screenOptions={{ headerShown: false }} initialRouteName="index">
+    <Tabs screenOptions={{ headerShown: false }} initialRouteName="reference">
       <Tabs.Screen
-        name="index"
+        name="reference"
         options={{
           title: 'Reference',
           tabBarIcon: ({ color }) => (

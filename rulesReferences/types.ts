@@ -119,3 +119,10 @@ export type PlayerClassData = {
   advancedAbilities: string
   legendaryAbilities: string[]
 }
+
+export type DigestedRollTable = {
+  order: number
+  name: string
+  description: string
+  key: string
+}
