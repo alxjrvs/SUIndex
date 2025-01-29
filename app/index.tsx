@@ -1,12 +1,6 @@
-import { useEffect } from 'react'
 import { Text, View } from 'react-native'
-import { AbilityTree } from '~/rulesReferences/abilityTree'
 
 export default function Index() {
-  useEffect(() => {
-    AbilityTree.fetch()
-  }, [])
-
   return (
     <View
       style={{
