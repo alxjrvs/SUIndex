@@ -1,20 +1,15 @@
-import { Drawer } from 'expo-router/drawer'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
-import * as SplashScreen from 'expo-splash-screen'
-
-import { ThemeProvider, useTheme } from '@react-navigation/native'
+import { ThemeProvider } from '@react-navigation/native'
 import ReferenceProvider from '~/context/reference/provider'
-
-SplashScreen.preventAutoHideAsync()
+import { Stack } from 'expo-router'
+import theme from '~/theme'
 
 export default function RootLayout() {
-  const theme = useTheme()
   return (
     <ThemeProvider value={theme}>
       <ReferenceProvider>
-        <GestureHandlerRootView style={{ flex: 1 }}>
-          <Drawer />
-        </GestureHandlerRootView>
+        <Stack initialRouteName="(tabs)">
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
       </ReferenceProvider>
     </ThemeProvider>
   )

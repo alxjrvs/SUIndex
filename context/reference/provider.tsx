@@ -64,8 +64,6 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
     return null
   }
 
-  console.log(state)
-
   return (
     <ReferenceContext.Provider value={state}>
       {props.children}

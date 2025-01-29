@@ -1,13 +1,13 @@
-import { Ability } from '../ability'
-import { AbilityTreeRequirement } from '../abilityTreeRequirement'
-import { Equipment } from '../equipment'
-import { Keyword } from '../keyword'
-import { MechChassis } from '../mechChassis'
-import { Module } from '../module'
-import { PlayerClass } from '../playerClass'
-import { RollTable } from '../rollTable'
-import { System } from '../system'
-import { Trait } from '../trait'
+import { Ability } from '../../rulesReferences/ability'
+import { AbilityTreeRequirement } from '../../rulesReferences/abilityTreeRequirement'
+import { Equipment } from '../../rulesReferences/equipment'
+import { Keyword } from '../../rulesReferences/keyword'
+import { MechChassis } from '../../rulesReferences/mechChassis'
+import { Module } from '../../rulesReferences/module'
+import { PlayerClass } from '../../rulesReferences/playerClass'
+import { RollTable } from '../../rulesReferences/rollTable'
+import { System } from '../../rulesReferences/system'
+import { Trait } from '../../rulesReferences/trait'
 
 export type ReferenceState = {
   abilities: Ability[]
