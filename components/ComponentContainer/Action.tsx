@@ -3,6 +3,7 @@ import { ComponentAction } from '~/rulesReferences/componentAction'
 import { AppText } from '../AppText'
 import { DataList } from '../DataList'
 import colors from '~/colors'
+import { ActivationCost } from './ActivationCost'
 
 type Props = {
   action: ComponentAction
@@ -12,13 +13,7 @@ export function Action({ action }: Props) {
     <View>
       <View style={{ flexDirection: 'row', gap: 5 }}>
         {action.activationCost && (
-          <AppText
-            highlight={colors.black}
-            variant="bold"
-            style={styles.headerText}
-          >
-            {action.activationCost}
-          </AppText>
+          <ActivationCost label={action.activationCost} />
         )}
         <AppText variant="bold" style={styles.headerText}>
           {action.name}

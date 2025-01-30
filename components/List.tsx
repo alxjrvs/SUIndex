@@ -1,17 +1,18 @@
-import { FlatList, FlatListProps, View } from 'react-native'
+import { FlatList, FlatListProps, Platform, View } from 'react-native'
 
-export default function List<T = unknown>({
-  data,
-  renderItem,
-  keyExtractor,
-}: FlatListProps<T>) {
+export default function List<T = unknown>(props: FlatListProps<T>) {
   return (
     <FlatList
-      data={data}
-      style={{ padding: 10, maxWidth: 1024, alignSelf: 'center' }}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
+      {...props}
+      style={[
+        {
+          alignSelf: 'center',
+          width: Platform.select({ web: '50%', ios: '100%', android: '100%' }),
+          paddingHorizontal: 10,
+        },
+        props.style,
+      ]}
     />
   )
 }

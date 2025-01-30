@@ -3,13 +3,13 @@ import { AppText } from './AppText'
 import React from 'react'
 import colors from '~/colors'
 import { DataValue } from '~/types'
+import { ActivationCost } from './ComponentContainer/ActivationCost'
 
 type Props = {
   values: DataValue[]
-  style?: StyleProp<TextStyle>
   textColor?: (typeof colors)[keyof typeof colors]
 }
-export function DataList({ values, style, textColor }: Props) {
+export function DataList({ values, textColor }: Props) {
   if (values.length <= 0) return null
 
   return (
@@ -23,20 +23,21 @@ export function DataList({ values, style, textColor }: Props) {
     >
       {values.map((v, index, arr) => (
         <React.Fragment key={`${v.value}-${index}-stat`}>
-          <AppText
-            highlight={v.bold ? colors.black : 'none'}
-            variant="bold"
-            style={[
-              { textTransform: 'uppercase' },
-              textColor && { color: textColor },
-              v.bold && { color: colors.white, fontSize: 15 },
-              style,
-            ]}
-          >
-            {v.value}
-          </AppText>
+          {v.cost ? (
+            <ActivationCost label={v.value} textColor={textColor} />
+          ) : (
+            <AppText
+              variant="bold"
+              style={[
+                { textTransform: 'uppercase' },
+                textColor && { color: textColor },
+              ]}
+            >
+              {v.value}
+            </AppText>
+          )}
 
-          {index === arr.length - 1 || v.bold ? null : (
+          {index === arr.length - 1 || v.cost ? null : (
             <AppText variant="bold" style={[textColor && { color: textColor }]}>
               //
             </AppText>

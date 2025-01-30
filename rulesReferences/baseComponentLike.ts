@@ -23,21 +23,21 @@ export class BaseComponentLike<T extends ComponentLike> {
     this.data = data
   }
   get name() {
-    return String(this.data.name)
+    return this.data.name
   }
   get description() {
-    return String(this.data.description)
+    return this.data.description
   }
 
   get techLevel(): TechLevel | undefined {
     if (!this.data.techLevel) return undefined
-    return this.data.techLevel as 1 | 2 | 3 | 4 | 5 | 6
+    return this.data.techLevel as TechLevel
   }
 
   get traits() {
     if (!this.data.traits) return []
     return this.data.traits.map((t) => {
-      return `${t.type}${t.amount !== undefined ? `(${t.amount})` : ''}`
+      return `${t.type.trimEnd()}${t.amount !== undefined ? `(${t.amount})` : ''}`
     })
   }
 
@@ -45,7 +45,7 @@ export class BaseComponentLike<T extends ComponentLike> {
     const details: DataValue[] = []
 
     if (this.activationCost) {
-      details.push({ value: this.activationCost, bold: true })
+      details.push({ value: this.activationCost, cost: true })
     }
 
     if (this.actionType) {

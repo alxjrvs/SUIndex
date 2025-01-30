@@ -29,7 +29,7 @@ export function ComponentContainer({
     <View style={[{ backgroundColor: colors.SULightBlue }, style]}>
       <Header
         backgroundColor={backgroundColor}
-        header={header || component.name}
+        header={header || component.name || ''}
         details={component.details}
       />
       <View style={{ flexDirection: 'row' }}>

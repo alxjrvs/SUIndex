@@ -42,16 +42,17 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
       ])
 
       setState({
-        abilityTreeRequirements,
+        abilityTreeRequirements:
+          abilityTreeRequirements as AbilityTreeRequirement[],
         traits,
-        abilities,
+        abilities: abilities as Ability[],
         keywords,
         systems,
         modules,
         equipments,
         mechChassis,
         playerClasses,
-        rollTables,
+        rollTables: rollTables as RollTable[],
       })
 
       setComplete(true)
