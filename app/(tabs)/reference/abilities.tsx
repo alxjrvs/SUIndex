@@ -1,8 +1,8 @@
+import ComponentList from '~/components/ComponentList'
 import { useReference } from '~/context/reference/useReference'
-import BasicComponentList from '~/components/BasicComponentList'
 
 export default function Abilities() {
   const { abilities } = useReference()
 
-  return <BasicComponentList data={abilities} tag="ability" />
+  return <ComponentList data={abilities} tag="ability" />
 }

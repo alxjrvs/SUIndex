@@ -7,4 +7,8 @@ export class Ability extends BaseComponentLike<AbilityData> {
   get level() {
     return this.data.level
   }
+
+  get activationCurrency() {
+    return 'AP'
+  }
 }

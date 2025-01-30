@@ -7,9 +7,9 @@ export interface ComponentLike {
   notes?: string
   traits?: { type: string; amount?: number }[]
   details?: DataValue[]
-  activationCost?: number
+  activationCost?: number | string
   range?: string
-  damage?: { amount: number; type: string }
+  damage?: { amount: number | string; type: string }
   actionType?: string
 }
 

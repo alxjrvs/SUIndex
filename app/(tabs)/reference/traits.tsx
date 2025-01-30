@@ -1,8 +1,8 @@
 import { useReference } from '~/context/reference/useReference'
-import BasicComponentList from '~/components/BasicComponentList'
+import ComponentList from '~/components/ComponentList'
 
 export default function Traits() {
   const { traits } = useReference()
 
-  return <BasicComponentList data={traits} tag="trait" />
+  return <ComponentList data={traits} tag="trait" />
 }

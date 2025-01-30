@@ -70,7 +70,11 @@ export class BaseComponentLike<T extends ComponentLike> {
 
   get activationCost() {
     if (!this.data.activationCost) return undefined
-    return `${this.data.activationCost}${this.activationCurrency}`
+    const cost =
+      String(this.data.activationCost).toLowerCase() === 'variable'
+        ? 'X'
+        : this.data.activationCost
+    return `${cost}${this.activationCurrency}`
   }
 
   get range() {

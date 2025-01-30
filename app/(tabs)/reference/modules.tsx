@@ -1,8 +1,8 @@
+import ComponentList from '~/components/ComponentList'
 import { useReference } from '~/context/reference/useReference'
-import DenseComponentList from '~/components/DenseComponentList'
 
 export default function Modules() {
   const { modules } = useReference()
 
-  return <DenseComponentList data={modules} tag="module" />
+  return <ComponentList data={modules} tag="module" />
 }
