@@ -1,14 +1,9 @@
-import { ReferencesHydrator } from './referencesHydrator'
+import { BaseComponentLike } from './baseComponentLike'
 import { DigestedRollTable, RollTableData } from './types'
 
-export class RollTable {
-  static async fetch() {
-    return ReferencesHydrator.getRules('tables')
-  }
-  static async all() {
-    const data = await this.fetch()
-    return data.map((d: any) => new this(d))
-  }
+export class RollTable extends BaseComponentLike<RollTableData> {
+  static rulesKey = 'tables'
+
   static digestedRollTable(
     tables: Record<string, string>
   ): DigestedRollTable[] {
@@ -33,15 +28,11 @@ export class RollTable {
     })
   }
 
-  private data: RollTableData
-  public name: string
-  public section: string
-  public table: DigestedRollTable[]
+  get section() {
+    return this.data.section
+  }
 
-  constructor(data: RollTableData) {
-    this.data = data
-    this.name = data.name
-    this.section = data.section
-    this.table = RollTable.digestedRollTable(data.rollTable)
+  get table() {
+    return RollTable.digestedRollTable(this.data.rollTable)
   }
 }

@@ -1,22 +1,10 @@
-import { ReferencesHydrator } from './referencesHydrator'
+import { BaseComponentLike } from './baseComponentLike'
 import { SystemModuleData } from './types'
 
-export class System {
-  static async fetch() {
-    return ReferencesHydrator.getRules('systems')
-  }
-  static async all() {
-    const data = await this.fetch()
-    return data.map((d: any) => new this(d))
-  }
+export class System extends BaseComponentLike<SystemModuleData> {
+  static rulesKey = 'systems'
 
-  private data: SystemModuleData
-  public name: string
-  public description: string
-
-  constructor(data: SystemModuleData) {
-    this.data = data
-    this.name = data.name
-    this.description = data.description
+  get activationCurrency() {
+    return 'EP'
   }
 }

@@ -10,14 +10,14 @@ type Props = {
   level?: 1 | 2 | 3 | 4 | 5 | 6
   description?: string
   notes?: string
-  stats?: DataValue[]
+  details?: DataValue[]
   style?: ViewStyle
 }
 
 export function ComponentContainer({
   header,
   description,
-  stats = [],
+  details = [],
   level,
   notes,
   children,
@@ -56,7 +56,7 @@ export function ComponentContainer({
           </AppText>
         )}
         <View style={{ minHeight: 15 }}>
-          <DataList textColor={colors.white} values={stats} />
+          <DataList textColor={colors.white} values={details} />
         </View>
       </View>
       <View style={{ padding: 5, gap: 5 }}>

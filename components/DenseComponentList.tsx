@@ -1,9 +1,10 @@
 import List from './List'
 import { ComponentContainer } from './ComponentContainer'
-import { DenseComponentLike } from '~/types'
+import { BaseComponentLike } from '~/rulesReferences/baseComponentLike'
+import { ComponentLike } from '~/rulesReferences/types'
 
 type Props = {
-  data: DenseComponentLike[]
+  data: BaseComponentLike<ComponentLike>[]
   tag: string
 }
 export default function DenseComponentList({ data, tag }: Props) {
@@ -12,7 +13,7 @@ export default function DenseComponentList({ data, tag }: Props) {
       data={data}
       renderItem={(t) => (
         <ComponentContainer
-          stats={t.item.stats}
+          details={t.item.details}
           level={t.item.techLevel}
           header={t.item.name}
           notes={t.item.notes}

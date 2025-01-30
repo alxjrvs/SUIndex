@@ -1,7 +1,24 @@
-export type AbilityTreeRequirementData = {
+import { DataValue } from '~/types'
+
+export interface ComponentLike {
+  name?: string
+  description?: string
+  techLevel?: TechLevel | undefined
+  notes?: string
+  traits?: { type: string; amount?: number }[]
+  details?: DataValue[]
+  activationCost?: number
+  range?: string
+  damage?: { amount: number; type: string }
+  actionType?: string
+}
+
+export interface AbilityTreeRequirementData extends ComponentLike {
   tree: string
   requirement: string[]
 }
+
+export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 type BaseData = {
   name: string
@@ -50,15 +67,13 @@ type ActionData = {
   traits?: TraitReference[]
 }
 
-export type SystemModuleData = {
-  name: string
-  techLevel: number
+export type SystemModuleData = BaseData & {
+  techLevel: TechLevel
   slotsRequired: number
   salvageValue: number
   range?: string
   damage?: DamageData
   traits?: TraitReference[]
-  description: string
   actionType?: string
   statBonus?: StatBonusData
   recommended?: boolean
@@ -68,15 +83,15 @@ export type SystemModuleData = {
   actions?: ActionData[]
 }
 
-export type EquipmentData = {
+export type EquipmentData = BaseData & {
   name: string
-  techLevel?: number
+  description: string
+  techLevel?: TechLevel
   traits?: TraitReference[]
   damage?: DamageData
   activationCost?: number
   actionType?: string
   range?: string
-  description: string
   notes?: string
 }
 
@@ -112,10 +127,8 @@ export type MechChassisData = {
   patterns: PatternReference[]
 }
 
-export type PlayerClassData = {
-  name: string
+export type PlayerClassData = BaseData & {
   type: string
-  description: string
   coreClasses: string[]
   coreAbilities: string[]
   advancedAbilities: string

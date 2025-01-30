@@ -1,8 +1,8 @@
 import { useReference } from '~/context/reference/useReference'
-import BasicComponentList from '~/components/BasicComponentList'
+import DenseComponentList from '~/components/DenseComponentList'
 
 export default function Keywords() {
   const { keywords } = useReference()
 
-  return <BasicComponentList data={keywords} tag="keyword" />
+  return <DenseComponentList data={keywords} tag="keyword" />
 }

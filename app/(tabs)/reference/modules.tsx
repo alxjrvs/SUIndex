@@ -1,8 +1,8 @@
 import { useReference } from '~/context/reference/useReference'
-import BasicComponentList from '~/components/BasicComponentList'
+import DenseComponentList from '~/components/DenseComponentList'
 
 export default function Modules() {
   const { modules } = useReference()
 
-  return <BasicComponentList data={modules} tag="module" />
+  return <DenseComponentList data={modules} tag="module" />
 }

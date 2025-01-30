@@ -1,16 +1,22 @@
-import { ComponentLike } from '~/types'
 import List from './List'
-import { BasicComponentDisplay } from './BasicComponentDisplay'
+import { ComponentContainer } from './ComponentContainer'
+import { BaseComponentLike } from '~/rulesReferences/baseComponentLike'
+import { ComponentLike } from '~/rulesReferences/types'
 
 type Props = {
-  data: ComponentLike[]
+  data: BaseComponentLike<ComponentLike>[]
   tag: string
 }
 export default function BasicComponentList({ data, tag }: Props) {
   return (
     <List
       data={data}
-      renderItem={(t) => <BasicComponentDisplay component={t.item} />}
+      renderItem={(t) => (
+        <ComponentContainer
+          description={t.item.description}
+          header={t.item.name}
+        />
+      )}
       keyExtractor={(t) => `${t.name}--${tag}`}
     />
   )
