@@ -3,6 +3,7 @@ import { DataValue } from '~/types'
 export interface ComponentLike {
   name?: string
   description?: string
+  slotsRequired?: number
   techLevel?: TechLevel | undefined
   notes?: string
   traits?: { type: string; amount?: number }[]
@@ -11,6 +12,7 @@ export interface ComponentLike {
   range?: string
   damage?: { amount: number | string; type: string }
   actionType?: string
+  salvageValue?: number
 }
 
 export interface AbilityTreeRequirementData extends ComponentLike {

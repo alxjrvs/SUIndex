@@ -100,6 +100,16 @@ export class BaseComponentLike<T extends ComponentLike> {
     return this.data.notes
   }
 
+  get salvageValue() {
+    if (!this.data.salvageValue) return undefined
+    return this.data.salvageValue
+  }
+
+  get slotsRequired() {
+    if (!this.data.slotsRequired) return undefined
+    return this.data.slotsRequired
+  }
+
   get activationCurrency(): string {
     throw new Error('Not implemented')
   }

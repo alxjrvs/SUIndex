@@ -11,15 +11,7 @@ export default function ComponentList({ data, tag }: Props) {
   return (
     <List
       data={data}
-      renderItem={(t) => (
-        <ComponentContainer
-          details={t.item.details}
-          level={t.item.techLevel}
-          header={t.item.name}
-          notes={t.item.notes}
-          description={t.item.description}
-        />
-      )}
+      renderItem={(t) => <ComponentContainer component={t.item} />}
       keyExtractor={(t) => `${t.name}--${tag}`}
     />
   )

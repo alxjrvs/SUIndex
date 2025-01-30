@@ -25,7 +25,6 @@ export function DataList({ values, style, textColor }: Props) {
         <React.Fragment key={`${v.value}-${index}-stat`}>
           <AppText
             highlight={v.bold ? colors.black : 'none'}
-            variant={v.bold ? 'bold' : 'bold'}
             style={[
               { textTransform: 'uppercase' },
               textColor && { color: textColor },
