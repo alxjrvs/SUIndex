@@ -6,6 +6,9 @@ export class BaseComponentLike<T extends ComponentLike> {
   static rulesKey = 'Not implemented'
 
   static async fetch() {
+    if (this.rulesKey === 'Not implemented') {
+      throw new Error('rulesKey not implemented')
+    }
     return ReferencesHydrator.getRules(this.rulesKey)
   }
 
