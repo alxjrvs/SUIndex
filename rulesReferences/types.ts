@@ -21,7 +21,7 @@ export interface AbilityTreeRequirementData extends ComponentLike {
   requirement: string[]
 }
 
-export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6
+export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined
 
 type BaseData = {
   name: string

@@ -22,7 +22,7 @@ export function Header({
         variant="bold"
         style={{
           maxWidth: '80%',
-          fontSize: 20,
+          fontSize: 25,
           color: textColor,
           flexWrap: 'wrap',
         }}
