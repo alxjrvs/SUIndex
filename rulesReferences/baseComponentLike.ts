@@ -1,6 +1,7 @@
 import { DataValue } from '~/types'
 import { ReferencesHydrator } from './referencesHydrator'
 import { ComponentLike, TechLevel } from './types'
+import { ComponentAction } from './componentAction'
 
 export class BaseComponentLike<T extends ComponentLike> {
   static rulesKey = 'Not implemented'
@@ -111,8 +112,10 @@ export class BaseComponentLike<T extends ComponentLike> {
   }
 
   get actions() {
-    if (!this.data.actions) return undefined
-    return this.data.actions
+    if (!this.data.actions) return []
+    return this.data.actions.map(
+      (a) => new ComponentAction(a, this.activationCurrency)
+    )
   }
 
   get activationCurrency(): string {

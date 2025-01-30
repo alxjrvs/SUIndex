@@ -8,7 +8,7 @@ export default function List<T = unknown>({
   return (
     <FlatList
       data={data}
-      style={{ padding: 10 }}
+      style={{ padding: 10, maxWidth: 1024, alignSelf: 'center' }}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       renderItem={renderItem}
       keyExtractor={keyExtractor}

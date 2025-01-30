@@ -61,7 +61,7 @@ type StatBonusData = {
   bonus: number
 }
 
-type ActionData = {
+export type ActionData = {
   name: string
   activationCost: number
   range: string
