@@ -110,6 +110,11 @@ export class BaseComponentLike<T extends ComponentLike> {
     return this.data.slotsRequired
   }
 
+  get actions() {
+    if (!this.data.actions) return undefined
+    return this.data.actions
+  }
+
   get activationCurrency(): string {
     throw new Error('Not implemented')
   }

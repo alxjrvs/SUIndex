@@ -1,6 +1,6 @@
 import { RollTable } from '~/rulesReferences/rollTable'
-import { ComponentContainer } from './ComponentContainer'
 import MiniRollTableDisplay from './MiniRollTableDisplay'
+import { ComponentContainer } from './ComponentContainer'
 
 type Props = {
   rollTable: RollTable
@@ -8,7 +8,7 @@ type Props = {
 
 export function RollTableDisplay({ rollTable }: Props) {
   return (
-    <ComponentContainer hidePadding header={rollTable.name}>
+    <ComponentContainer hidePadding component={rollTable}>
       <MiniRollTableDisplay rollTable={rollTable.table} />
     </ComponentContainer>
   )

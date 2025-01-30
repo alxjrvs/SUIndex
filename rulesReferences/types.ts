@@ -13,6 +13,7 @@ export interface ComponentLike {
   damage?: { amount: number | string; type: string }
   actionType?: string
   salvageValue?: number
+  actions?: ActionData[]
 }
 
 export interface AbilityTreeRequirementData extends ComponentLike {
