@@ -45,7 +45,7 @@ export const fonts = Platform.select({
   default: {
     regular: {
       fontFamily: 'Fira Code',
-      fontWeight: 'normal',
+      fontWeight: '300',
     },
     medium: {
       fontFamily: 'Fira Code',
@@ -66,7 +66,7 @@ export default {
   ...DarkTheme,
   colors: {
     primary: colors.SUOrange,
-    background: colors.SULightBlue,
+    background: colors.white,
     card: colors.SUBlue,
     text: colors.black,
     border: colors.white,

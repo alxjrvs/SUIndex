@@ -71,7 +71,9 @@ export type SystemModuleData = {
 export type EquipmentData = {
   name: string
   techLevel?: number
-  traits: TraitReference[]
+  traits?: TraitReference[]
+  damage?: DamageData
+  activationCost?: number
   actionType?: string
   range?: string
   description: string

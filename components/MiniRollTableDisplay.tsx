@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import { AppText } from './AppText'
-import { DobuleBorderView } from './DoubleBorderView'
+import { ComponentContainer } from './ComponentContainer'
 import { DigestedRollTable } from '~/rulesReferences/types'
 
 type Props = {
@@ -8,23 +8,9 @@ type Props = {
 }
 
 export default function MiniRollTableDisplay({ rollTable }: Props) {
-  return (
-    <View style={{ gap: 15 }}>
-      {rollTable.map(({ name, description, key }) => (
-        <DobuleBorderView key={name + key}>
-          <AppText>{description}</AppText>
-          <AppText
-            highlighted
-            style={{
-              position: 'absolute',
-              top: -10,
-            }}
-            variant="bold"
-          >
-            {key} - {name}
-          </AppText>
-        </DobuleBorderView>
-      ))}
-    </View>
-  )
+  return rollTable.map(({ name, description, key }) => (
+    <ComponentContainer header={`${key} - ${name}`} key={name + key}>
+      <AppText>{description}</AppText>
+    </ComponentContainer>
+  ))
 }

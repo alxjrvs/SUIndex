@@ -11,12 +11,24 @@ export class Ability {
   }
 
   private data: AbilityData
-  public name: string
-  public description: string
 
   constructor(data: AbilityData) {
     this.data = data
-    this.name = data.name
-    this.description = data.description
+  }
+
+  get name() {
+    return this.data.name
+  }
+
+  get description() {
+    return this.data.description
+  }
+
+  get level() {
+    return this.data.level
+  }
+
+  get cost() {
+    return this.data.activationCost
   }
 }

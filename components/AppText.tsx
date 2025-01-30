@@ -4,29 +4,32 @@ import { fonts } from '~/themes/apptheme'
 
 type Props = {
   variant?: keyof typeof fonts
-  highlighted?: boolean
+  highlight?: 'none' | (typeof colors)[keyof typeof colors]
 } & TextProps
 
 export function AppText({
   variant = 'regular',
-  highlighted = false,
+  highlight = 'none',
   style,
   ...props
 }: Props) {
   return (
     <Text
+      {...props}
       style={[
         variant && fonts[variant],
-        highlighted && styles.highlighted,
+        highlight !== 'none' && [
+          styles.highlight,
+          { backgroundColor: highlight },
+        ],
         style,
       ]}
-      {...props}
     />
   )
 }
 
 const styles = StyleSheet.create({
-  highlighted: {
+  highlight: {
     backgroundColor: colors.black,
     color: colors.white,
     textTransform: 'uppercase',

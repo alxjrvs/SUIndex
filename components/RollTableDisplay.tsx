@@ -1,7 +1,7 @@
 import { RollTable } from '~/rulesReferences/rollTable'
-import { AppText } from './AppText'
-import { DobuleBorderView } from './DoubleBorderView'
+import { ComponentContainer } from './ComponentContainer'
 import MiniRollTableDisplay from './MiniRollTableDisplay'
+import colors from '~/colors'
 
 type Props = {
   rollTable: RollTable
@@ -9,18 +9,11 @@ type Props = {
 
 export function RollTableDisplay({ rollTable }: Props) {
   return (
-    <DobuleBorderView innerProps={{ style: { paddingTop: 20 } }}>
-      <AppText
-        highlighted
-        style={{
-          position: 'absolute',
-          top: -10,
-        }}
-        variant="bold"
-      >
-        {rollTable.name}
-      </AppText>
+    <ComponentContainer
+      style={{ borderColor: colors.SUOrange, borderWidth: 1 }}
+      header={rollTable.name}
+    >
       <MiniRollTableDisplay rollTable={rollTable.table} />
-    </DobuleBorderView>
+    </ComponentContainer>
   )
 }

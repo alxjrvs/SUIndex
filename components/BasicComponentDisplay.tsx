@@ -1,12 +1,5 @@
-import { AppText } from './AppText'
-import { Trait } from '~/rulesReferences/trait'
-import { DobuleBorderView } from './DoubleBorderView'
-import colors from '~/colors'
-
-interface ComponentLike {
-  name: string
-  description: string
-}
+import { ComponentLike } from '~/types'
+import { ComponentContainer } from './ComponentContainer'
 
 type Props = {
   component: ComponentLike
@@ -14,18 +7,9 @@ type Props = {
 
 export function BasicComponentDisplay({ component }: Props) {
   return (
-    <DobuleBorderView>
-      <AppText
-        highlighted
-        style={{
-          position: 'absolute',
-          top: -10,
-        }}
-        variant="bold"
-      >
-        {component.name}
-      </AppText>
-      <AppText>{component.description}</AppText>
-    </DobuleBorderView>
+    <ComponentContainer
+      description={component.description}
+      header={component.name}
+    />
   )
 }

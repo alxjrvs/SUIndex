@@ -1,7 +1,8 @@
+import { DenseComponentLike } from '~/types'
 import { ReferencesHydrator } from './referencesHydrator'
 import { SystemModuleData } from './types'
 
-export class Module {
+export class Module implements DenseComponentLike {
   static async fetch() {
     return ReferencesHydrator.getRules('modules')
   }
@@ -11,12 +12,27 @@ export class Module {
   }
 
   private data: SystemModuleData
-  public name: string
-  public description: string
 
   constructor(data: SystemModuleData) {
     this.data = data
-    this.name = data.name
-    this.description = data.description
+  }
+
+  get name() {
+    return this.data.name
+  }
+  get description() {
+    return this.data.description
+  }
+  get techLevel(): 1 | 2 | 3 | 4 | 5 | 6 {
+    if (!this.data.techLevel) return 1
+    return this.data.techLevel as 1 | 2 | 3 | 4 | 5 | 6
+  }
+
+  get stats() {
+    return []
+  }
+
+  get notes() {
+    return this.data.notes
   }
 }

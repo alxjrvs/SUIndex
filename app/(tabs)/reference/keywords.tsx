@@ -1,17 +1,8 @@
 import { useReference } from '~/context/reference/useReference'
-import { BasicComponentDisplay } from '~/components/BasicComponentDisplay'
-import List from '~/components/List'
+import BasicComponentList from '~/components/BasicComponentList'
 
 export default function Keywords() {
   const { keywords } = useReference()
 
-  return (
-    <List
-      data={keywords}
-      renderItem={(t) => {
-        return <BasicComponentDisplay component={t.item} />
-      }}
-      keyExtractor={(t) => `${t.name}--keyword`}
-    />
-  )
+  return <BasicComponentList data={keywords} tag="keyword" />
 }
