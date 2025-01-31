@@ -8,7 +8,14 @@ export default function List<T = unknown>(props: FlatListProps<T>) {
       style={[
         {
           alignSelf: 'center',
-          width: Platform.select({ web: '50%', ios: '100%', android: '100%' }),
+          maxWidth: Platform.select({
+            web: 1024 as unknown as '100%',
+            default: '100%',
+          }),
+          minWidth: Platform.select({
+            web: undefined,
+            default: '100%',
+          }),
           paddingHorizontal: 10,
         },
         props.style,

@@ -1,7 +1,7 @@
-import { DataValue } from '~/types'
-import { ReferencesHydrator } from './referencesHydrator'
+import { ComponentAction } from './ComponentAction'
+import { ReferencesHydrator } from './ReferencesHydrator'
 import { ComponentLike, TechLevel } from './types'
-import { ComponentAction } from './componentAction'
+import { generateDataListValues } from '~/utils/formatters'
 
 export class BaseComponentLike<T extends ComponentLike> {
   static rulesKey = 'Not implemented'
@@ -22,6 +22,7 @@ export class BaseComponentLike<T extends ComponentLike> {
   constructor(data: T) {
     this.data = data
   }
+
   get name() {
     return this.data.name
   }
@@ -30,84 +31,45 @@ export class BaseComponentLike<T extends ComponentLike> {
   }
 
   get techLevel(): TechLevel | undefined {
-    if (!this.data.techLevel) return undefined
     return this.data.techLevel as TechLevel
   }
 
   get traits() {
-    if (!this.data.traits) return []
-    return this.data.traits.map((t) => {
-      return `${t.type.trimEnd()}${t.amount !== undefined ? `(${t.amount})` : ''}`
-    })
+    return this.data.traits
   }
 
   get details() {
-    const details: DataValue[] = []
-
-    if (this.activationCost) {
-      details.push({ value: this.activationCost, cost: true })
-    }
-
-    if (this.actionType) {
-      details.push({ value: this.actionType })
-    }
-
-    if (this.range) {
-      details.push({ value: this.range })
-    }
-
-    if (this.damage) {
-      details.push({ value: this.damage })
-    }
-
-    if (this.traits.length > 0) {
-      this.traits.forEach((t) => {
-        details.push({ value: t })
-      })
-    }
-
-    return details
+    return generateDataListValues({
+      ...this.data,
+      activationCurrency: this.activationCurrency,
+    })
   }
 
   get activationCost() {
-    if (!this.data.activationCost) return undefined
-    const cost =
-      String(this.data.activationCost).toLowerCase() === 'variable'
-        ? 'X'
-        : this.data.activationCost
-    return `${cost}${this.activationCurrency}`
+    return this.data.activationCost
   }
 
   get range() {
-    if (!this.data.range) return undefined
-    return `Range:${this.data.range}`
+    return this.data.range
   }
 
   get damage() {
-    if (!this.data.damage) return undefined
-    return `Damage:${this.data.damage.amount}${this.data.damage.type}`
+    return this.data.damage
   }
 
   get actionType() {
-    if (!this.data.actionType) return undefined
-    if (this.data.actionType.includes('action')) {
-      return this.data.actionType
-    }
-    return `${this.data.actionType} Action`
+    return this.data.actionType
   }
 
   get notes() {
-    if (!this.data.notes) return undefined
     return this.data.notes
   }
 
   get salvageValue() {
-    if (!this.data.salvageValue) return undefined
     return this.data.salvageValue
   }
 
   get slotsRequired() {
-    if (!this.data.slotsRequired) return undefined
     return this.data.slotsRequired
   }
 

@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import { ComponentAction } from '~/rulesReferences/componentAction'
+import { ComponentAction } from '~/rulesReferences/ComponentAction'
 import { AppText } from '../AppText'
 import { DataList } from '../DataList'
 import colors from '~/colors'

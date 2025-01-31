@@ -1,4 +1,4 @@
-import { BaseComponentLike } from './baseComponentLike'
+import { BaseComponentLike } from './BaseComponentLike'
 import { AbilityTreeRequirementData } from './types'
 
 export class AbilityTreeRequirement extends BaseComponentLike<AbilityTreeRequirementData> {

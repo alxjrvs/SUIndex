@@ -1,4 +1,4 @@
-import { RollTable } from '~/rulesReferences/rollTable'
+import { RollTable } from '~/rulesReferences/RollTable'
 import MiniRollTableDisplay from './MiniRollTableDisplay'
 import { ComponentContainer } from './ComponentContainer'
 

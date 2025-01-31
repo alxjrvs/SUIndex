@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle, View } from 'react-native'
+import { View } from 'react-native'
 import { AppText } from './AppText'
 import React from 'react'
 import colors from '~/colors'

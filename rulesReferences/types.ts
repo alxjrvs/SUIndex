@@ -53,7 +53,7 @@ type RollTableReference = {
 
 type DamageData = {
   type: string
-  amount: number
+  amount: number | string
 }
 
 type StatBonusData = {
@@ -61,13 +61,15 @@ type StatBonusData = {
   bonus: number
 }
 
-export type ActionData = {
-  name: string
-  activationCost: number
+export type ActionData = BaseData & {
+  activationCost: number | string
   range: string
   actionType: string
-  description: string
   traits?: TraitReference[]
+  damage?: DamageData
+  rollTable?: RollTableReference
+  options: { label: string; value: string }[]
+  stats?: ChassisStats
 }
 
 export type SystemModuleData = BaseData & {
@@ -87,8 +89,6 @@ export type SystemModuleData = BaseData & {
 }
 
 export type EquipmentData = BaseData & {
-  name: string
-  description: string
   techLevel?: TechLevel
   traits?: TraitReference[]
   damage?: DamageData
@@ -104,7 +104,7 @@ export type RollTableData = {
   rollTable: RollTableReference
 }
 
-type ChassisStats = {
+export type ChassisStats = {
   structure_pts: number
   energy_pts: number
   heat_cap: number
@@ -113,20 +113,17 @@ type ChassisStats = {
   cargo_cap: number
   tech_level: number
   salvage_value: number
+  notes?: string
 }
 
-type PatternReference = {
-  name: string
-  description: string
+type PatternReference = BaseData & {
   systems: string[]
   modules: string[]
 }
 
-export type MechChassisData = {
-  name: string
+export type MechChassisData = BaseData & {
   stats: ChassisStats
-  chassis_ability: string
-  description: string
+  chassis_abilities: Partial<ActionData>[]
   patterns: PatternReference[]
 }
 
@@ -138,9 +135,7 @@ export type PlayerClassData = BaseData & {
   legendaryAbilities: string[]
 }
 
-export type DigestedRollTable = {
+export type DigestedRollTable = BaseData & {
   order: number
-  name: string
-  description: string
   key: string
 }

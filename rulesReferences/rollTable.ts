@@ -1,4 +1,4 @@
-import { BaseComponentLike } from './baseComponentLike'
+import { BaseComponentLike } from './BaseComponentLike'
 import { DigestedRollTable, RollTableData } from './types'
 
 export class RollTable extends BaseComponentLike<RollTableData> {

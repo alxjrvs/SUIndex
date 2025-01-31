@@ -1,4 +1,4 @@
-import { BaseComponentLike } from './baseComponentLike'
+import { BaseComponentLike } from './BaseComponentLike'
 import { PlayerClassData } from './types'
 
 export class PlayerClass extends BaseComponentLike<PlayerClassData> {

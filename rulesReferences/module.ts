@@ -1,5 +1,5 @@
 import { SystemModuleData } from './types'
-import { BaseComponentLike } from './baseComponentLike'
+import { BaseComponentLike } from './BaseComponentLike'
 
 export class Module extends BaseComponentLike<SystemModuleData> {
   static rulesKey = 'modules'

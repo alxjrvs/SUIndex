@@ -1,4 +1,4 @@
-import { BaseComponentLike } from './baseComponentLike'
+import { BaseComponentLike } from './BaseComponentLike'
 import { TraitData } from './types'
 
 export class Trait extends BaseComponentLike<TraitData> {
