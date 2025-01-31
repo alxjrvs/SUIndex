@@ -1,5 +1,5 @@
 import { BaseComponentLike } from './BaseComponentLike'
-import { MechChassisData, TechLevel } from './types'
+import { MechChassisData } from './types'
 
 export class MechChassis extends BaseComponentLike<MechChassisData> {
   static rulesKey = 'chassis'

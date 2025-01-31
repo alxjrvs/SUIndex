@@ -7,7 +7,11 @@ import { DataList } from '../DataList'
 import { generateDataListValues } from '~/utils/formatters'
 import { ChassisStats } from './ChassisStats'
 
-export function ChassisAbilities({ component }: { component: MechChassis }) {
+export function ChassisAbilities({
+  abilities,
+}: {
+  abilities: MechChassis['abilities']
+}) {
   return (
     <View
       style={{
@@ -18,7 +22,7 @@ export function ChassisAbilities({ component }: { component: MechChassis }) {
         justifyContent: 'center',
       }}
     >
-      {component.abilities.map((ability, index) => (
+      {abilities.map((ability, index) => (
         <ChassisAbility
           key={String(ability?.description) + index}
           ability={ability}

@@ -26,6 +26,7 @@ export function ComponentContainer({
   component,
 }: Props) {
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
+  const isChassis = isMechChassis(component)
   return (
     <View
       style={[{ backgroundColor: colors.SULightBlue, paddingBottom: 5 }, style]}
@@ -55,9 +56,7 @@ export function ComponentContainer({
                 {component.description}
               </AppText>
             )}
-            {isMechChassis(component) && (
-              <ChassisStats stats={component.stats} />
-            )}
+            {isChassis && <ChassisStats stats={component.stats} />}
           </View>
           {component.actions.map((action, index) => (
             <Action
@@ -70,9 +69,7 @@ export function ComponentContainer({
               {component.notes}
             </AppText>
           )}
-          {isMechChassis(component) && (
-            <ChassisAbilities component={component} />
-          )}
+          {isChassis && <ChassisAbilities abilities={component.abilities} />}
         </View>
       </View>
     </View>
