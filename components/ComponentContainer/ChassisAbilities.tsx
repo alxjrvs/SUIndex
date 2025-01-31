@@ -6,6 +6,8 @@ import { ActionData } from '~/rulesReferences/types'
 import { DataList } from '../DataList'
 import { generateDataListValues } from '~/utils/formatters'
 import { ChassisStats } from './ChassisStats'
+import MiniRollTableDisplay from '../MiniRollTableDisplay'
+import { RollTable } from '~/rulesReferences/RollTable'
 
 export function ChassisAbilities({
   abilities,
@@ -60,6 +62,11 @@ function ChassisAbility({ ability }: { ability: Partial<ActionData> }) {
         </AppText>
       ))}
       <ChassisStats stats={ability.stats} up />
+      {ability.rollTable && (
+        <MiniRollTableDisplay
+          rollTable={RollTable.digestedRollTable(ability.rollTable)}
+        />
+      )}
     </View>
   )
 }
