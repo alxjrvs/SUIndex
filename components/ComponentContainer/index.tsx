@@ -9,6 +9,8 @@ import { VerticalBar } from './VerticalBar'
 import { isMechChassis } from '~/rulesReferences/guards'
 import { ChassisStats } from './ChassisStats'
 import { ChassisAbilities } from './ChassisAbilities'
+import MiniRollTableDisplay from '../MiniRollTableDisplay'
+import { RollTable } from '~/rulesReferences/RollTable'
 
 type Props = {
   header?: string
@@ -66,6 +68,12 @@ export function ComponentContainer({
             <AppText style={{ borderWidth: 1, padding: 5 }}>
               {component.notes}
             </AppText>
+          )}
+          {component.rollTable && (
+            <MiniRollTableDisplay
+              rollTable={RollTable.digestedRollTable(component.rollTable)}
+              showCommand
+            />
           )}
           {isChassis && <ChassisAbilities abilities={component.abilities} />}
         </View>

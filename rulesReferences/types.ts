@@ -10,9 +10,10 @@ export interface ComponentLike {
   details?: DataValue[]
   activationCost?: number | string
   range?: string
-  damage?: { amount: number | string; type: string }
+  damage?: DamageData
   actionType?: string
   salvageValue?: number
+  rollTable?: RollTableReference
   actions?: ActionData[]
 }
 
@@ -93,6 +94,7 @@ export type EquipmentData = BaseData & {
   traits?: TraitReference[]
   damage?: DamageData
   activationCost?: number
+  rollTable?: RollTableReference
   actionType?: string
   range?: string
   notes?: string

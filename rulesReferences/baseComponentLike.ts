@@ -57,6 +57,10 @@ export class BaseComponentLike<T extends ComponentLike> {
     return this.data.damage
   }
 
+  get rollTable() {
+    return this.data.rollTable
+  }
+
   get actionType() {
     return this.data.actionType
   }
