@@ -35,7 +35,9 @@ export function ComponentContainer({
         backgroundColor={backgroundColor}
         header={header || component.name || ''}
         details={component.details}
-      />
+      >
+        {isChassis && <ChassisStats stats={component.stats} />}
+      </Header>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <VerticalBar component={component} backgroundColor={backgroundColor} />
 
@@ -48,16 +50,12 @@ export function ComponentContainer({
               gap: 30,
               justifyContent: 'center',
             },
+            isChassis && { paddingTop: 60 },
           ]}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {component.description && (
-              <AppText style={{ flex: 1 }} variant="medium">
-                {component.description}
-              </AppText>
-            )}
-            {isChassis && <ChassisStats stats={component.stats} />}
-          </View>
+          {component.description && (
+            <AppText variant="medium">{component.description}</AppText>
+          )}
           {component.actions.map((action, index) => (
             <Action
               key={component.name + action.name + index}

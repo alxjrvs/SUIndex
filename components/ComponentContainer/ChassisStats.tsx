@@ -3,29 +3,34 @@ import colors from '~/colors'
 import { AppText } from '../AppText'
 import { TechLevel } from '~/rulesReferences/types'
 import { ChassisStats as Stats } from '~/rulesReferences/types'
+import { PropsWithChildren } from 'react'
 
+type Position = 'up' | 'down'
 type Props = {
   stats: Stats | undefined
+  up?: boolean
 }
 
-export function ChassisStats({ stats }: Props) {
+export function ChassisStats({ stats, up = false }: Props) {
   if (!stats) return null
+
   return (
     <View
-      style={{
-        paddingTop: 50,
-        overflow: 'visible',
-        minWidth: 130,
-      }}
+      style={[
+        {
+          overflow: 'visible',
+          flexDirection: 'row',
+        },
+      ]}
     >
-      <Stat label="Structure Pts." value={stats.structure_pts} />
-      <Stat label="Energy Pts." value={stats.energy_pts} />
-      <Stat label="Heat Cap." value={stats.heat_cap} />
-      <Stat label="System Slots" value={stats.system_slots} />
-      <Stat label="Module Slots" value={stats.module_slots} />
-      <Stat label="Cargo Cap." value={stats.cargo_cap} />
-      <Stat label="Tech Level" value={stats.tech_level} />
-      <Stat label="Salvage Value" value={stats.salvage_value} />
+      <Stat up={up} label="Structure Pts." value={stats.structure_pts} />
+      <Stat up={up} label="Energy Pts." value={stats.energy_pts} />
+      <Stat up={up} label="Heat Cap." value={stats.heat_cap} />
+      <Stat up={up} label="System Slots" value={stats.system_slots} />
+      <Stat up={up} label="Module Slots" value={stats.module_slots} />
+      <Stat up={up} label="Cargo Cap." value={stats.cargo_cap} />
+      <Stat up={up} label="Tech Level" value={stats.tech_level} />
+      <Stat up={up} label="Salvage Value" value={stats.salvage_value} />
     </View>
   )
 }
@@ -33,60 +38,90 @@ export function ChassisStats({ stats }: Props) {
 function Stat({
   label,
   value,
+  up,
 }: {
   label: string
   value: number | string | TechLevel
+  up: boolean
 }) {
   return (
     <View
       style={{
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        overflow: 'visible',
+        position: 'relative',
       }}
+    >
+      <StatLabel up={up}>{label}</StatLabel>
+      <StatValue>{value}</StatValue>
+    </View>
+  )
+}
+
+function StatValue({ children }: PropsWithChildren) {
+  return (
+    <AppText
+      style={{
+        textAlign: 'center',
+        backgroundColor: colors.white,
+        width: 30,
+        maxWidth: 30,
+        minWidth: 30,
+        height: 30,
+        maxHeight: 30,
+        minHeight: 30,
+        borderWidth: 2,
+        zIndex: 3,
+        overflow: 'visible',
+        borderColor: colors.black,
+        alignContent: 'center',
+        justifyContent: 'center',
+        paddingTop: 3,
+      }}
+    >
+      {children}
+    </AppText>
+  )
+}
+
+function StatLabel({ children, up }: PropsWithChildren<{ up?: boolean }>) {
+  return (
+    <View
+      style={[
+        !up && {
+          top: 14,
+          transform: [{ rotate: '45deg' }],
+        },
+        up && {
+          top: 0,
+          transform: [{ rotate: '-45deg' }],
+        },
+        {
+          left: 9,
+          position: 'absolute',
+          height: 14,
+          backgroundColor: colors.black,
+          zIndex: 2,
+          transformOrigin: 'left',
+          alignItems: 'center',
+          alignContent: 'center',
+          overflow: 'visible',
+        },
+      ]}
     >
       <AppText
         variant="heavy"
+        numberOfLines={1}
         style={{
-          height: 14,
-          fontSize: 12,
-          right: -10,
-          top: 5,
-          zIndex: 2,
+          fontSize: 11,
+          paddingTop: 1,
           backgroundColor: colors.black,
-          alignItems: 'center',
-          alignContent: 'center',
           color: colors.white,
           textTransform: 'uppercase',
-          transformOrigin: 'right',
-          overflow: 'visible',
-          paddingLeft: 5,
-          paddingRight: 15,
-          transform: [{ rotate: '30deg' }],
+          paddingRight: 5,
+          paddingLeft: 22,
         }}
       >
-        {label}
-      </AppText>
-      <AppText
-        style={{
-          textAlign: 'center',
-          backgroundColor: colors.white,
-          width: 30,
-          maxWidth: 30,
-          minWidth: 30,
-          height: 30,
-          maxHeight: 30,
-          minHeight: 30,
-          borderWidth: 2,
-          zIndex: 3,
-          borderColor: colors.black,
-          alignContent: 'center',
-          justifyContent: 'center',
-          paddingTop: 3,
-        }}
-      >
-        {value}
+        {children}
       </AppText>
     </View>
   )

@@ -3,6 +3,7 @@ import colors from '~/colors'
 import { AppText } from '../AppText'
 import { DataList } from '../DataList'
 import { DataValue } from '~/types'
+import { PropsWithChildren } from 'react'
 
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
@@ -15,20 +16,24 @@ export function Header({
   header,
   textColor = colors.white,
   details = [],
-}: Props) {
+  children,
+}: PropsWithChildren<Props>) {
   return (
     <View style={{ backgroundColor, padding: 5 }}>
-      <AppText
-        variant="bold"
-        style={{
-          maxWidth: '80%',
-          fontSize: 25,
-          color: textColor,
-          flexWrap: 'wrap',
-        }}
-      >
-        {header}
-      </AppText>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <AppText
+          variant="bold"
+          style={{
+            maxWidth: '80%',
+            fontSize: 25,
+            color: textColor,
+            flexWrap: 'wrap',
+          }}
+        >
+          {header}
+        </AppText>
+        {children}
+      </View>
       <View style={{ minHeight: 15 }}>
         <DataList textColor={textColor} values={details} />
       </View>

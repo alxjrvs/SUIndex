@@ -59,7 +59,7 @@ function ChassisAbility({ ability }: { ability: Partial<ActionData> }) {
           {option.value}
         </AppText>
       ))}
-      <ChassisStats stats={ability.stats} />
+      <ChassisStats stats={ability.stats} up />
     </View>
   )
 }
