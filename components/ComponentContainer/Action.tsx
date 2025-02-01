@@ -2,8 +2,9 @@ import { StyleSheet, View } from 'react-native'
 import { ComponentAction } from '~/rulesReferences/ComponentAction'
 import { AppText } from '../AppText'
 import { DataList } from '../DataList'
-import colors from '~/colors'
 import { ActivationCost } from './ActivationCost'
+import MiniRollTableDisplay from '../MiniRollTableDisplay'
+import { RollTable } from '~/rulesReferences/RollTable'
 
 type Props = {
   action: ComponentAction
@@ -21,6 +22,11 @@ export function Action({ action }: Props) {
       </View>
       <DataList values={action.details} />
       <AppText>{action.description}</AppText>
+      {action.rollTable && (
+        <MiniRollTableDisplay
+          rollTable={RollTable.digestedRollTable(action.rollTable)}
+        />
+      )}
     </View>
   )
 }

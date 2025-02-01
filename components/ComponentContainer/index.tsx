@@ -6,11 +6,12 @@ import { ComponentLike } from '~/rulesReferences/types'
 import { Header } from './Header'
 import { Action } from './Action'
 import { VerticalBar } from './VerticalBar'
-import { isMechChassis } from '~/rulesReferences/guards'
+import { isMechChassis, isRollTable } from '~/rulesReferences/guards'
 import { ChassisStats } from './ChassisStats'
 import { ChassisAbilities } from './ChassisAbilities'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
 import { RollTable } from '~/rulesReferences/RollTable'
+import { ChassisPatterns } from './ChassisPatterns'
 
 type Props = {
   header?: string
@@ -42,7 +43,6 @@ export function ComponentContainer({
       </Header>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <VerticalBar component={component} backgroundColor={backgroundColor} />
-
         <View
           style={[
             !hidePadding && { padding: 5, gap: 5 },
@@ -72,10 +72,13 @@ export function ComponentContainer({
           {component.rollTable && (
             <MiniRollTableDisplay
               rollTable={RollTable.digestedRollTable(component.rollTable)}
-              showCommand
+              showCommand={!isRollTable(component)}
             />
           )}
           {isChassis && <ChassisAbilities abilities={component.abilities} />}
+          {isChassis && component.patterns && (
+            <ChassisPatterns patterns={component.patterns} />
+          )}
         </View>
       </View>
     </View>

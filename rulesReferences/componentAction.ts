@@ -1,5 +1,8 @@
-import { DataValue } from '~/types'
 import { ActionData } from './types'
+import {
+  formatActivationCost,
+  generateDataListValues,
+} from '~/utils/formatters'
 
 export class ComponentAction {
   private action: ActionData
@@ -18,58 +21,22 @@ export class ComponentAction {
   }
 
   get details() {
-    const details: DataValue[] = []
-
-    if (this.actionType) {
-      details.push({ value: this.actionType })
-    }
-
-    if (this.range) {
-      details.push({ value: this.range })
-    }
-
-    if (this.traits.length > 0) {
-      this.traits.forEach((t) => {
-        details.push({ value: t })
-      })
-    }
-
-    return details
+    return generateDataListValues({
+      ...this.action,
+      activationCost: '',
+      activationCurrency: '',
+    })
   }
 
-  get actionType() {
-    if (!this.action.actionType) return undefined
-    if (
-      this.action.actionType.includes('action') ||
-      this.action.actionType.includes('Passive')
-    ) {
-      return this.action.actionType
-    }
-    return `${this.action.actionType} Action`
-  }
-
-  get range() {
-    if (!this.action.range) return undefined
-    return `Range:${this.action.range}`
+  get rollTable() {
+    if (!this.action.rollTable) return undefined
+    return this.action.rollTable
   }
 
   get activationCost() {
-    if (this.name.includes('Detector')) {
-      console.log('HERE')
-      console.log(this.action.activationCost)
-    }
-    if (!this.action.activationCost) return undefined
-    const cost =
-      String(this.action.activationCost).toLowerCase() === 'variable'
-        ? 'X'
-        : this.action.activationCost
-    return `${cost}${this.activationCurrency}`
-  }
-
-  get traits() {
-    if (!this.action.traits) return []
-    return this.action.traits.map((t) => {
-      return `${t.type}${t.amount !== undefined ? `(${t.amount})` : ''}`
+    return formatActivationCost({
+      ...this.action,
+      activationCurrency: this.activationCurrency,
     })
   }
 }

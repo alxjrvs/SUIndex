@@ -45,6 +45,10 @@ export class BaseComponentLike<T extends ComponentLike> {
     })
   }
 
+  get recommended() {
+    return !!this.data.recommended
+  }
+
   get activationCost() {
     return this.data.activationCost
   }

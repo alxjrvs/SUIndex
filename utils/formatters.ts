@@ -1,4 +1,3 @@
-import { act } from 'react'
 import { ActionData } from '~/rulesReferences/types'
 import { DataValue } from '~/types'
 
@@ -25,10 +24,12 @@ export function generateDataListValues(data: Data): DataValue[] {
       details.push({ value: t })
     })
 
+  !!data.recommended && details.push({ value: 'Recommended' })
+
   return details
 }
 
-function formatActivationCost({
+export function formatActivationCost({
   activationCost,
   activationCurrency,
 }: Pick<Data, 'activationCost' | 'activationCurrency'>) {
@@ -57,6 +58,33 @@ function formatDamage({ damage }: Pick<Data, 'damage'>) {
 function formattedTraits({ traits }: Pick<Data, 'traits'>) {
   if (!traits) return undefined
   return traits.map((t) => {
-    return `${t.type.trimEnd()}${t.amount !== undefined ? `(${t.amount})` : ''}`
+    const type = capitalizeFirstLetter(t.type.trimEnd())
+    const amount = t.amount !== undefined ? `(${t.amount})` : ''
+    return `${type}${amount}`
   })
+}
+
+export function capitalizeFirstLetter(val: string) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1)
+}
+
+export function collapseMultiples(list: string[]): string[] {
+  if (list.length === 0) return []
+
+  const result: string[] = []
+  let current = list[0]
+  let count = 1
+
+  for (let i = 1; i < list.length; i++) {
+    if (list[i] === current) {
+      count++
+    } else {
+      result.push(count > 1 ? `${current} x${count}` : current)
+      current = list[i]
+      count = 1
+    }
+  }
+
+  result.push(count > 1 ? `${current} x${count}` : current)
+  return result
 }

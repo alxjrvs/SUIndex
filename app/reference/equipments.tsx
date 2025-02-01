@@ -4,5 +4,5 @@ import { useReference } from '~/context/reference/useReference'
 export default function Equipments() {
   const { equipments } = useReference()
 
-  return <ComponentList data={equipments} tag="equipment" />
+  return <ComponentList showTLFilter data={equipments} tag="equipment" />
 }

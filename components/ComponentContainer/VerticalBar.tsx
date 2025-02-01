@@ -5,6 +5,7 @@ import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
 import { TechLevelDisplay } from '../TechLevelDisplay'
 import { RequiredSlotsDisplay } from '../RequiredSlotsDisplay'
 import { SalvageValueDisplay } from '../SalvageValueDisplay'
+import { isMechChassis } from '~/rulesReferences/guards'
 
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
@@ -12,7 +13,7 @@ type Props = {
 }
 
 export function VerticalBar({ component, backgroundColor }: Props) {
-  if (!component.techLevel) return null
+  if (!component.techLevel || isMechChassis(component)) return null
 
   return (
     <View

@@ -7,6 +7,7 @@ export default function MechChassis() {
 
   return (
     <ComponentList
+      showTLFilter
       headerColor={colors.SUMilitaryGreen}
       data={mechChassis}
       tag="mech-chassis"

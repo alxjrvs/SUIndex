@@ -1,7 +1,7 @@
 const colors = {
   SUBlue: 'rgb(143,195,216)',
   SUMilitaryGreen: 'rgb(122,151,138)',
-  SUOrange: 'rgb(232,110,79)',
+  SUOrange: 'rgb(239,137,79)',
   SULightOrange: 'rgb(245,193,163)',
   SULightBlue: 'rgb(199,223,231)',
   SUOneBlue: 'rgb(115,201,230)',

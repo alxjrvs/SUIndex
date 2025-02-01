@@ -12,6 +12,7 @@ export interface ComponentLike {
   range?: string
   damage?: DamageData
   actionType?: string
+  recommended?: boolean
   salvageValue?: number
   rollTable?: RollTableReference
   actions?: ActionData[]
@@ -71,6 +72,7 @@ export type ActionData = BaseData & {
   rollTable?: RollTableReference
   options: { label: string; value: string }[]
   stats?: ChassisStats
+  recommended?: boolean
 }
 
 export type SystemModuleData = BaseData & {
@@ -118,10 +120,15 @@ export type ChassisStats = {
   notes?: string
 }
 
-type PatternReference = BaseData & {
+type CorePattern = {
   systems: string[]
   modules: string[]
 }
+export type PatternReference = BaseData &
+  CorePattern & {
+    legalStarting?: boolean
+    drone?: CorePattern
+  }
 
 export type MechChassisData = BaseData & {
   stats: ChassisStats

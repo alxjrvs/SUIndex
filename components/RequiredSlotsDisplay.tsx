@@ -1,6 +1,6 @@
 import colors from '~/colors'
 import { AppText } from './AppText'
-import { View } from 'react-native'
+import { Triangle } from './Triangle'
 
 type Props = {
   slotsRequired: number | undefined
@@ -8,20 +8,7 @@ type Props = {
 export function RequiredSlotsDisplay({ slotsRequired }: Props) {
   if (!slotsRequired) return null
   return (
-    <View
-      style={{
-        width: 0,
-        height: 0,
-        borderStyle: 'solid',
-        borderLeftWidth: 15,
-        borderRightWidth: 15,
-        borderBottomWidth: 25,
-        borderLeftColor: 'transparent',
-        borderRightColor: 'transparent',
-        borderBottomColor: colors.black,
-        position: 'relative',
-      }}
-    >
+    <Triangle>
       <AppText
         variant="bold"
         style={{
@@ -34,6 +21,6 @@ export function RequiredSlotsDisplay({ slotsRequired }: Props) {
       >
         {slotsRequired}
       </AppText>
-    </View>
+    </Triangle>
   )
 }

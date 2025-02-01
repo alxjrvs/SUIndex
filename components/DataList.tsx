@@ -26,13 +26,7 @@ export function DataList({ values, textColor }: Props) {
           {v.cost ? (
             <ActivationCost label={v.value} textColor={textColor} />
           ) : (
-            <AppText
-              variant="bold"
-              style={[
-                { textTransform: 'uppercase' },
-                textColor && { color: textColor },
-              ]}
-            >
+            <AppText variant="bold" style={[textColor && { color: textColor }]}>
               {v.value}
             </AppText>
           )}
