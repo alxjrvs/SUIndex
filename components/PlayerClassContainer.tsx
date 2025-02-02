@@ -17,20 +17,28 @@ export function PlayerClassContainer({ playerClass }: Props) {
         sectionTitle="Core Abilities"
         abilities={playerClass.coreAbilities}
       />
-      {playerClass.advancedAbilities.length > 0 && (
-        <AbilitySection
-          headerColor={colors.SUOrange}
-          sectionTitle="Advanced Abilities"
-          abilities={{ ['Advanced Abilities']: playerClass.advancedAbilities }}
-        />
-      )}
-      {Object.values(playerClass.legendaryAbilities).length > 0 && (
-        <AbilitySection
-          headerColor={colors.SUPink}
-          sectionTitle="Legendary Abilities"
-          abilities={playerClass.legendaryAbilities}
-        />
-      )}
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ flex: 1 }}>
+          {playerClass.advancedAbilities.length > 0 && (
+            <AbilitySection
+              headerColor={colors.SUOrange}
+              sectionTitle="Advanced Abilities"
+              abilities={{
+                ['Advanced Abilities']: playerClass.advancedAbilities,
+              }}
+            />
+          )}
+        </View>
+        <View style={{ flex: 1 }}>
+          {Object.values(playerClass.legendaryAbilities).length > 0 && (
+            <AbilitySection
+              headerColor={colors.SUPink}
+              sectionTitle="Legendary Abilities"
+              abilities={playerClass.legendaryAbilities}
+            />
+          )}
+        </View>
+      </View>
     </ComponentContainer>
   )
 }
