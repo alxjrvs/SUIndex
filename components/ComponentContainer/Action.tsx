@@ -5,6 +5,7 @@ import { DataList } from '../DataList'
 import { ActivationCost } from './ActivationCost'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
 import { RollTable } from '~/rulesReferences/RollTable'
+import colors from '~/colors'
 
 type Props = {
   action: ComponentAction
@@ -20,7 +21,7 @@ export function Action({ action }: Props) {
           {action.name}
         </AppText>
       </View>
-      <DataList values={action.details} />
+      <DataList textColor={colors.black} values={action.details} />
       <AppText>{action.description}</AppText>
       {action.rollTable && (
         <MiniRollTableDisplay

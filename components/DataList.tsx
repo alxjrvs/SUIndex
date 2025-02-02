@@ -8,10 +8,14 @@ import { ActivationCost } from './ComponentContainer/ActivationCost'
 type Props = {
   values: DataValue[]
   invert?: boolean
+  textColor?: (typeof colors)[keyof typeof colors]
 }
-export function DataList({ values, invert = false }: Props) {
+export function DataList({
+  values,
+  invert = false,
+  textColor = colors.white,
+}: Props) {
   if (values.length <= 0) return null
-  const textColor = invert ? colors.white : colors.black
 
   return (
     <View
