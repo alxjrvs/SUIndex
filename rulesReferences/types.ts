@@ -19,7 +19,7 @@ export interface ComponentLike {
 }
 
 export interface AbilityTreeRequirementData extends ComponentLike {
-  tree: string
+  tree: string | number
   requirement: string[]
 }
 
@@ -40,7 +40,7 @@ export type TraitReference = {
 
 export type AbilityData = BaseData & {
   tree: string
-  level: number
+  level: number | string
   effect?: string
   activationCost?: number
   actionType?: string

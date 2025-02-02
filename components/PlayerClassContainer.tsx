@@ -1,4 +1,4 @@
-import { PlayerClass } from '~/rulesReferences/PlayerClass'
+import { HydratedAbilities, PlayerClass } from '~/rulesReferences/PlayerClass'
 import { ComponentContainer } from './ComponentContainer'
 import { AppText } from './AppText'
 import colors from '~/colors'
@@ -10,54 +10,97 @@ type Props = {
   playerClass: PlayerClass
 }
 export function PlayerClassContainer({ playerClass }: Props) {
-  const coreAbilitiesArray = Object.keys(playerClass.coreAbilities)
   return (
     <ComponentContainer component={playerClass}>
-      <View>
-        <AppText
-          style={{
-            textTransform: 'uppercase',
-            textAlign: 'center',
-            fontSize: 20,
-          }}
-          variant="heavy"
-          color={colors.SUBrick}
-        >
-          core abilities
-        </AppText>
-        {coreAbilitiesArray.map((abilityKey) => {
-          const abilities = playerClass.coreAbilities[abilityKey]
-          return (
-            <CollapsibleInfoRow
-              key={abilityKey}
-              headerColor={colors.SUBrick}
-              textColor={colors.white}
-              header={`${abilityKey} Tree`}
-            >
-              <AbilityList abilities={abilities} />
-            </CollapsibleInfoRow>
-          )
-        })}
-      </View>
+      <AbilitySection
+        headerColor={colors.SUBrick}
+        sectionTitle="Core Abilities"
+        abilities={playerClass.coreAbilities}
+      />
+      {playerClass.advancedAbilities.length > 0 && (
+        <AbilitySection
+          headerColor={colors.SUOrange}
+          sectionTitle="Advanced Abilities"
+          abilities={{ ['Advanced Abilities']: playerClass.advancedAbilities }}
+        />
+      )}
+      {Object.values(playerClass.legendaryAbilities).length > 0 && (
+        <AbilitySection
+          headerColor={colors.SUPink}
+          sectionTitle="Legendary Abilities"
+          abilities={playerClass.legendaryAbilities}
+        />
+      )}
     </ComponentContainer>
   )
 }
 
-function AbilityList({ abilities }: { abilities: Ability[] }) {
+function AbilitySection({
+  sectionTitle,
+  abilities,
+  headerColor,
+}: {
+  sectionTitle: string
+  headerColor: (typeof colors)[keyof typeof colors]
+  abilities: HydratedAbilities
+}) {
+  const abilitiesKeyArray = Object.keys(abilities)
   return (
     <View>
-      {abilities
-        .sort((a, b) => a.level - b.level)
-        .map((ability) => (
-          <ComponentContainer
-            verticalBarBackground={colors.SUBrick}
-            headerColor={colors.black}
-            component={ability}
-            key={ability.name}
-          >
-            <AppText>{ability.effect}</AppText>
-          </ComponentContainer>
-        ))}
+      <AppText
+        style={{
+          textTransform: 'uppercase',
+          textAlign: 'center',
+          fontSize: 20,
+        }}
+        variant="heavy"
+        color={headerColor}
+      >
+        {sectionTitle}
+      </AppText>
+      {abilitiesKeyArray.map((abilityKey) => {
+        return (
+          <AbilityList
+            abilities={abilities[abilityKey]}
+            headerColor={headerColor}
+            abilityKey={abilityKey}
+          />
+        )
+      })}
     </View>
+  )
+}
+
+function AbilityList({
+  abilities,
+  abilityKey,
+  headerColor,
+}: {
+  abilities: Ability[]
+  abilityKey: string
+  headerColor: (typeof colors)[keyof typeof colors]
+}) {
+  return (
+    <CollapsibleInfoRow
+      key={abilityKey}
+      headerColor={headerColor}
+      textColor={colors.white}
+      header={`${abilityKey} Tree`}
+    >
+      <View>
+        {abilities
+          .sort((a, b) => Number(a.level) - Number(b.level))
+          .map((ability) => (
+            <ComponentContainer
+              verticalBarBackground={headerColor}
+              headerColor={colors.black}
+              component={ability}
+              key={ability.name}
+            >
+              <AppText>{ability.effect}</AppText>
+            </ComponentContainer>
+          ))}
+      </View>
+    </CollapsibleInfoRow>
   )
 }

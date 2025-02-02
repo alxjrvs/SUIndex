@@ -5,6 +5,9 @@ export class Ability extends BaseComponentLike<AbilityData> {
   static rulesKey = 'abilities'
 
   get level() {
+    if (this.tree.includes('Legendary')) {
+      return 'L'
+    }
     return this.data.level
   }
 

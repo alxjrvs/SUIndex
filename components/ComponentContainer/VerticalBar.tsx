@@ -6,6 +6,7 @@ import { TechLevelDisplay } from '../TechLevelDisplay'
 import { RequiredSlotsDisplay } from '../RequiredSlotsDisplay'
 import { SalvageValueDisplay } from '../SalvageValueDisplay'
 import { isMechChassis } from '~/rulesReferences/guards'
+import { AppText } from '../AppText'
 
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]

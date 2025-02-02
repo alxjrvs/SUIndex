@@ -24,7 +24,11 @@ export function Header({
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
         {level && (
           <View
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+            style={{
+              flex: 0.5,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
           >
             <AppText
               variant="bold"
