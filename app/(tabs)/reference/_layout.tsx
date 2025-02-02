@@ -75,6 +75,12 @@ export default function ReferenceRoot() {
             title: 'Traits',
           }}
         />
+        <Drawer.Screen
+          name="referenceModal/index"
+          options={{
+            drawerItemStyle: { display: 'none' },
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   )

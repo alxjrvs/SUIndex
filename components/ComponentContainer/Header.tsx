@@ -24,9 +24,10 @@ export function Header({
         {level && (
           <View
             style={{
-              flex: 0.5,
+              flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
+              alignContent: 'center',
             }}
           >
             <AppText
