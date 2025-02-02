@@ -63,6 +63,7 @@ export function Header({
           </View>
           <View style={{ minHeight: 15 }}>
             <DataList
+              textColor={colors.white}
               invert={backgroundColor === colors.black}
               values={details}
             />
