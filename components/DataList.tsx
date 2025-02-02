@@ -4,6 +4,7 @@ import React from 'react'
 import colors from '~/colors'
 import { DataValue } from '~/types'
 import { ActivationCost } from './ComponentContainer/ActivationCost'
+import ReferenceLink from './ReferenceLink'
 
 type Props = {
   values: DataValue[]
@@ -31,9 +32,11 @@ export function DataList({
           {v.cost ? (
             <ActivationCost invert={invert} label={v.value} />
           ) : (
-            <AppText style={[textColor && { color: textColor }]}>
-              {v.value}
-            </AppText>
+            <ReferenceLink type={v.type} name={String(v.value).split('(')[0]}>
+              <AppText style={[textColor && { color: textColor }]}>
+                {v.value}
+              </AppText>
+            </ReferenceLink>
           )}
 
           {index === arr.length - 1 || v.cost ? null : (

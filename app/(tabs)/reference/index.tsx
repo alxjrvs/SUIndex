@@ -1,9 +1,5 @@
-import ReferenceLink from '~/components/ReferenceLink'
+import { AppText } from '~/components/AppText'
 
 export default function Index() {
-  return (
-    <ReferenceLink type="trait" name="hot">
-      Foo
-    </ReferenceLink>
-  )
+  return <AppText>Index</AppText>
 }

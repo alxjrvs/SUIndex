@@ -21,7 +21,7 @@ export function generateDataListValues(data: Data): DataValue[] {
   const traits = formattedTraits(data)
   traits &&
     traits.forEach((t) => {
-      details.push({ value: t })
+      details.push({ value: t, type: 'trait' })
     })
 
   !!data.recommended && details.push({ value: 'Recommended' })
