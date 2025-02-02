@@ -9,7 +9,7 @@ type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
   header: string
   details?: DataValue[]
-  level?: number
+  level?: number | string
 }
 export function Header({
   backgroundColor,
