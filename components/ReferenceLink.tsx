@@ -12,5 +12,12 @@ export default function ReferenceLink({
   name,
 }: PropsWithChildren<Props>) {
   if (!type) return children
-  return <Link href={`/referenceModal/${type}/${name}`}>{children}</Link>
+  return (
+    <Link
+      style={{ textDecorationLine: 'underline' }}
+      href={`/referenceModal/${type}/${name}`}
+    >
+      {children}
+    </Link>
+  )
 }

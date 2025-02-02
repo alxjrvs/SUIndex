@@ -1,4 +1,4 @@
-export type ReferencableComponentType = 'trait'
+export type ReferencableComponentType = 'trait' | 'module' | 'system'
 export type DataValue = {
   value: string | number
   cost?: boolean
