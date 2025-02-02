@@ -1,4 +1,4 @@
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { Pressable, StyleSheet, Text } from 'react-native'
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated'
 
@@ -14,14 +14,13 @@ export default function ReferenceModal() {
       }}
     >
       {/* Dismiss modal when pressing outside */}
-      <Link href={'/'} asChild>
-        <Pressable style={StyleSheet.absoluteFill} />
-      </Link>
+      <Pressable
+        onPress={() => router.dismiss()}
+        style={StyleSheet.absoluteFill}
+      />
       <Animated.View
         entering={SlideInDown}
         style={{
-          width: '90%',
-          height: '80%',
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: 'white',
@@ -30,9 +29,6 @@ export default function ReferenceModal() {
         <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>
           Modal Screen
         </Text>
-        <Link href="/">
-          <Text>← Go back</Text>
-        </Link>
       </Animated.View>
     </Animated.View>
   )
