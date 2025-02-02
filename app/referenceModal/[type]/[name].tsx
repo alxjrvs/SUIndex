@@ -1,8 +1,32 @@
-import { Link, router } from 'expo-router'
-import { Pressable, StyleSheet, Text } from 'react-native'
+import { router, useLocalSearchParams } from 'expo-router'
+import { useEffect } from 'react'
+import { Platform, Pressable, StyleSheet, Text } from 'react-native'
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated'
+import { ComponentContainer } from '~/components/ComponentContainer'
+import { useReference } from '~/context/reference/useReference'
+
+const allowedTypes = ['trait']
 
 export default function ReferenceModal() {
+  const { type, name } = useLocalSearchParams<{ type: string; name: string }>()
+
+  const { traits } = useReference()
+
+  if (!allowedTypes.includes(type)) {
+    router.back()
+    return null
+  }
+
+  const data = traits
+
+  const component = data.find(
+    (item) => item.name.toLowerCase() === name.toLowerCase()
+  )
+  if (!component) {
+    router.back()
+    return null
+  }
+
   return (
     <Animated.View
       entering={FadeIn}
@@ -13,7 +37,6 @@ export default function ReferenceModal() {
         backgroundColor: '#00000040',
       }}
     >
-      {/* Dismiss modal when pressing outside */}
       <Pressable
         onPress={() => router.dismiss()}
         style={StyleSheet.absoluteFill}
@@ -24,11 +47,17 @@ export default function ReferenceModal() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: 'white',
+          maxWidth: Platform.select({
+            web: 1024 as unknown as '100%',
+            default: '100%',
+          }),
+          minWidth: Platform.select({
+            web: undefined,
+            default: '100%',
+          }),
         }}
       >
-        <Text style={{ fontWeight: 'bold', marginBottom: 10 }}>
-          Modal Screen
-        </Text>
+        <ComponentContainer component={component} />
       </Animated.View>
     </Animated.View>
   )

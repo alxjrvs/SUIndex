@@ -1,10 +1,9 @@
-import { Link } from 'expo-router'
-import { AppText } from '~/components/AppText'
+import ReferenceLink from '~/components/ReferenceLink'
 
 export default function Index() {
   return (
-    <Link href="/referenceModal/foo/bar">
-      <AppText>Foo</AppText>
-    </Link>
+    <ReferenceLink type="trait" name="hot">
+      Foo
+    </ReferenceLink>
   )
 }
