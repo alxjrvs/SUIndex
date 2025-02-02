@@ -10,10 +10,13 @@ import { isMechChassis } from '~/rulesReferences/guards'
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
   component: BaseComponentLike<ComponentLike>
+  forceShow?: boolean
 }
 
-export function VerticalBar({ component, backgroundColor }: Props) {
-  if (!component.techLevel || isMechChassis(component)) return null
+export function VerticalBar({ component, backgroundColor, forceShow }: Props) {
+  const shouldHide = !component.techLevel || isMechChassis(component)
+  const hide = forceShow ? false : shouldHide
+  if (hide) return null
 
   return (
     <View

@@ -4,6 +4,7 @@ import { AppText } from './AppText'
 import colors from '~/colors'
 import { Ability } from '~/rulesReferences/Ability'
 import { View } from 'react-native'
+import { CollapsibleInfoRow } from './CollapsibleInfoRow'
 
 type Props = {
   playerClass: PlayerClass
@@ -12,25 +13,33 @@ export function PlayerClassContainer({ playerClass }: Props) {
   const coreAbilitiesArray = Object.keys(playerClass.coreAbilities)
   return (
     <ComponentContainer component={playerClass}>
-      <AppText color={colors.SUBrick}>core abilities</AppText>
       <View>
-        {coreAbilitiesArray.map((ability) => (
-          <View style={{ flex: 1 }} key={ability}>
-            <AppText key={ability}>{ability}</AppText>
-            <AbilityList abilities={playerClass.coreAbilities[ability]} />
-          </View>
-        ))}
+        <AppText
+          style={{
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            fontSize: 20,
+          }}
+          variant="heavy"
+          color={colors.SUBrick}
+        >
+          core abilities
+        </AppText>
+        {coreAbilitiesArray.map((abilityKey) => {
+          const abilities = playerClass.coreAbilities[abilityKey]
+          return (
+            <CollapsibleInfoRow
+              key={abilityKey}
+              headerColor={colors.SUBrick}
+              textColor={colors.white}
+              header={`${abilityKey} Tree`}
+            >
+              <AbilityList abilities={abilities} />
+            </CollapsibleInfoRow>
+          )
+        })}
       </View>
     </ComponentContainer>
-  )
-}
-
-function AbilityCell({ ability }: { ability: Ability }) {
-  return (
-    <View>
-      <AppText>{ability.name}</AppText>
-      <AppText>{ability.description}</AppText>
-    </View>
   )
 }
 
@@ -40,7 +49,14 @@ function AbilityList({ abilities }: { abilities: Ability[] }) {
       {abilities
         .sort((a, b) => a.level - b.level)
         .map((ability) => (
-          <AbilityCell key={ability.name} ability={ability} />
+          <ComponentContainer
+            verticalBarBackground={colors.SUBrick}
+            headerColor={colors.black}
+            component={ability}
+            key={ability.name}
+          >
+            <AppText>{ability.effect}</AppText>
+          </ComponentContainer>
         ))}
     </View>
   )

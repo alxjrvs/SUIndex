@@ -6,7 +6,7 @@ import { ComponentLike } from '~/rulesReferences/types'
 import { Header } from './Header'
 import { Action } from './Action'
 import { VerticalBar } from './VerticalBar'
-import { isMechChassis, isRollTable } from '~/rulesReferences/guards'
+import { isAbility, isMechChassis, isRollTable } from '~/rulesReferences/guards'
 import { ChassisStats } from './ChassisStats'
 import { ChassisAbilities } from './ChassisAbilities'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
@@ -19,6 +19,7 @@ type Props = {
   style?: ViewStyle
   hidePadding?: boolean
   headerColor?: (typeof colors)[keyof typeof colors]
+  verticalBarBackground?: (typeof colors)[keyof typeof colors]
   component: BaseComponentLike<ComponentLike>
 }
 
@@ -28,28 +29,32 @@ export function ComponentContainer({
   hidePadding = false,
   headerColor,
   component,
+  verticalBarBackground,
   children,
 }: PropsWithChildren<Props>) {
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
   const isChassis = isMechChassis(component)
   return (
-    <View
-      style={[{ backgroundColor: colors.SULightBlue, paddingBottom: 5 }, style]}
-    >
+    <View style={[{ backgroundColor: colors.SULightBlue }, style]}>
       <Header
         backgroundColor={backgroundColor}
+        level={isAbility(component) ? component.level : undefined}
         header={header || component.name || ''}
         details={component.details}
       >
         {isChassis && <ChassisStats stats={component.stats} />}
       </Header>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <VerticalBar component={component} backgroundColor={backgroundColor} />
+      <View style={{ flexDirection: 'row' }}>
+        <VerticalBar
+          forceShow={!!verticalBarBackground}
+          component={component}
+          backgroundColor={verticalBarBackground || backgroundColor}
+        />
         <View
           style={[
             !hidePadding && { padding: 5, gap: 5 },
             {
-              flex: 10,
+              flex: 8,
               flexDirection: 'column',
               gap: 30,
               justifyContent: 'center',

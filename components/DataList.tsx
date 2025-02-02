@@ -7,10 +7,11 @@ import { ActivationCost } from './ComponentContainer/ActivationCost'
 
 type Props = {
   values: DataValue[]
-  textColor?: (typeof colors)[keyof typeof colors]
+  invert?: boolean
 }
-export function DataList({ values, textColor }: Props) {
+export function DataList({ values, invert = false }: Props) {
   if (values.length <= 0) return null
+  const textColor = invert ? colors.white : colors.black
 
   return (
     <View
@@ -24,7 +25,7 @@ export function DataList({ values, textColor }: Props) {
       {values.map((v, index, arr) => (
         <React.Fragment key={`${v.value}-${index}-stat`}>
           {v.cost ? (
-            <ActivationCost label={v.value} textColor={textColor} />
+            <ActivationCost invert={invert} label={v.value} />
           ) : (
             <AppText variant="bold" style={[textColor && { color: textColor }]}>
               {v.value}

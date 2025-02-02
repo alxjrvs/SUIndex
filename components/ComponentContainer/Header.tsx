@@ -8,34 +8,63 @@ import { PropsWithChildren } from 'react'
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
   header: string
-  textColor?: (typeof colors)[keyof typeof colors]
   details?: DataValue[]
+  level?: number
 }
 export function Header({
   backgroundColor,
   header,
-  textColor = colors.white,
+  level,
   details = [],
   children,
 }: PropsWithChildren<Props>) {
+  const color = backgroundColor === colors.black ? colors.white : colors.black
   return (
     <View style={{ backgroundColor, padding: 5 }}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <AppText
-          variant="bold"
-          style={{
-            maxWidth: '80%',
-            fontSize: 25,
-            color: textColor,
-            flexWrap: 'wrap',
-          }}
-        >
-          {header}
-        </AppText>
-        {children}
-      </View>
-      <View style={{ minHeight: 15 }}>
-        <DataList textColor={textColor} values={details} />
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
+        {level && (
+          <View
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          >
+            <AppText
+              variant="bold"
+              style={{
+                color,
+                fontSize: 25,
+                textAlign: 'center',
+              }}
+            >
+              {level}
+            </AppText>
+          </View>
+        )}
+        <View style={{ flex: 8 }}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <AppText
+              variant="bold"
+              style={{
+                maxWidth: '80%',
+                fontSize: 25,
+                flexWrap: 'wrap',
+                color,
+              }}
+            >
+              {header}
+            </AppText>
+            {children}
+          </View>
+          <View style={{ minHeight: 15 }}>
+            <DataList
+              invert={backgroundColor === colors.black}
+              values={details}
+            />
+          </View>
+        </View>
       </View>
     </View>
   )

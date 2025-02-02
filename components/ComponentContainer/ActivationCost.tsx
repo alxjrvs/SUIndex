@@ -6,18 +6,21 @@ type Props = {
   label: string | number
   textColor?: (typeof colors)[keyof typeof colors]
   fontSize?: number
+  invert?: boolean
 }
 
-export function ActivationCost({ label, textColor, fontSize }: Props) {
+export function ActivationCost({ label, fontSize, invert = false }: Props) {
+  const background = invert ? colors.white : colors.black
+  const color = invert ? colors.black : colors.white
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <AppText
-        highlight={colors.black}
+        highlight={background}
         variant="bold"
         style={[
           {
             textTransform: 'uppercase',
-            color: textColor || colors.white,
+            color,
             fontSize: fontSize || 15,
             zIndex: 2,
           },
@@ -36,7 +39,7 @@ export function ActivationCost({ label, textColor, fontSize }: Props) {
           borderBottomWidth: 10,
           borderLeftColor: 'transparent',
           borderRightColor: 'transparent',
-          borderBottomColor: colors.black,
+          borderBottomColor: background,
           transform: [{ rotate: '90deg' }],
           left: -4,
           marginRight: -10,

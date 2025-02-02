@@ -18,6 +18,7 @@ export default function MiniRollTableDisplay({
         <AppText
           variant="bold"
           highlight={colors.black}
+          color={colors.white}
           style={{ marginBottom: 10 }}
         >
           ROLL THE DIE:

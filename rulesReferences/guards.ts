@@ -1,3 +1,4 @@
+import { Ability } from './Ability'
 import { BaseComponentLike } from './BaseComponentLike'
 import { MechChassis } from './MechChassis'
 import { RollTable } from './RollTable'
@@ -7,6 +8,12 @@ export function isMechChassis(
   component: BaseComponentLike<ComponentLike>
 ): component is MechChassis {
   return component instanceof MechChassis
+}
+
+export function isAbility(
+  component: BaseComponentLike<ComponentLike>
+): component is Ability {
+  return component instanceof Ability
 }
 
 export function isRollTable(

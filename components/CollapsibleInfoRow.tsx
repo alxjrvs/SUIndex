@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from 'react'
-import { View, Pressable } from 'react-native'
+import { View, Pressable, ViewStyle, StyleProp } from 'react-native'
 import Collapsible from 'react-native-collapsible'
 import colors from '~/colors'
 import { AppText } from './AppText'
@@ -9,6 +9,7 @@ type Props = {
   header: string
   headerColor?: (typeof colors)[keyof typeof colors]
   textColor?: (typeof colors)[keyof typeof colors]
+  containerStyle?: StyleProp<ViewStyle>
 }
 
 export function CollapsibleInfoRow({
@@ -16,10 +17,11 @@ export function CollapsibleInfoRow({
   header,
   headerColor = colors.SUOrange,
   textColor = colors.black,
+  containerStyle,
 }: PropsWithChildren<Props>) {
   const [collapsed, setCollapsed] = useState(true)
   return (
-    <View>
+    <View style={containerStyle}>
       <Pressable
         style={{
           flexDirection: 'row',
