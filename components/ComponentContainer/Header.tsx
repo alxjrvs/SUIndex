@@ -18,7 +18,6 @@ export function Header({
   details = [],
   children,
 }: PropsWithChildren<Props>) {
-  const color = backgroundColor === colors.black ? colors.white : colors.black
   return (
     <View style={{ backgroundColor, padding: 5 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
@@ -33,7 +32,7 @@ export function Header({
             <AppText
               variant="bold"
               style={{
-                color,
+                color: colors.white,
                 fontSize: 25,
                 textAlign: 'center',
               }}
@@ -55,7 +54,7 @@ export function Header({
                 maxWidth: '80%',
                 fontSize: 25,
                 flexWrap: 'wrap',
-                color,
+                color: colors.white,
               }}
             >
               {header}
