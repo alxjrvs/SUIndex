@@ -1,5 +1,5 @@
-import { AppText } from '~/components/AppText'
+import { Redirect } from 'expo-router'
 
 export default function Index() {
-  return <AppText>Index</AppText>
+  return <Redirect href="/reference" />
 }
