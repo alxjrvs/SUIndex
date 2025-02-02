@@ -1,11 +1,9 @@
-import { Pressable, StyleSheet, View } from 'react-native'
+import { View } from 'react-native'
 import { PatternReference } from '~/rulesReferences/types'
 import { AppText } from '../AppText'
-import { useState } from 'react'
-import Collapsible from 'react-native-collapsible'
-import colors from '~/colors'
-import { Triangle } from '../Triangle'
 import { collapseMultiples } from '~/utils/formatters'
+import { CollapsibleInfoRow } from '../CollapsibleInfoRow'
+import colors from '~/colors'
 
 type Props = {
   patterns: PatternReference[]
@@ -21,86 +19,63 @@ export function ChassisPatterns({ patterns }: Props) {
 }
 
 function ChassisPattern({ pattern }: { pattern: PatternReference }) {
-  const [collapsed, setCollapsed] = useState(true)
   return (
-    <View>
-      <Pressable
+    <CollapsibleInfoRow
+      header={pattern.name}
+      headerColor={colors.SUMilitaryGreen}
+      textColor={colors.white}
+    >
+      <AppText
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          backgroundColor: colors.SUMilitaryGreen,
-          cursor: 'pointer',
-          padding: 5,
+          backgroundColor: colors.SUOrange,
+          padding: 10,
+          alignContent: 'center',
         }}
-        onPress={() => setCollapsed(!collapsed)}
       >
-        <AppText
-          variant="heavy"
-          style={{
-            color: colors.white,
-            fontSize: 18,
-          }}
-        >
-          {pattern.name}
-        </AppText>
-        <Triangle
-          color={colors.white}
-          style={{ transform: [{ rotate: collapsed ? '180deg' : '0deg' }] }}
-        />
-      </Pressable>
-      <Collapsible collapsed={collapsed}>
-        <AppText
-          style={{
-            backgroundColor: colors.SUOrange,
-            padding: 10,
-            alignContent: 'center',
-          }}
-        >
-          {pattern.description}
-        </AppText>
-        <View style={{ flexDirection: 'row' }}>
-          <PatternSection title="Systems" systemModules={pattern.systems} />
-          <PatternSection title="Modules" systemModules={pattern.modules} />
-        </View>
-        {pattern.drone && (
-          <>
-            <AppText
-              variant="bold"
-              style={{
-                backgroundColor: colors.SUOrange,
-                textAlign: 'center',
-                fontSize: 16,
-              }}
-            >
-              Drone
-            </AppText>
-            <View style={{ flexDirection: 'row' }}>
-              <PatternSection
-                title="Systems"
-                systemModules={pattern.drone.systems}
-              />
-              <PatternSection
-                title="Modules"
-                systemModules={pattern.drone.modules}
-              />
-            </View>
-          </>
-        )}
-        {pattern.legalStarting && (
+        {pattern.description}
+      </AppText>
+      <View style={{ flexDirection: 'row' }}>
+        <PatternSection title="Systems" systemModules={pattern.systems} />
+        <PatternSection title="Modules" systemModules={pattern.modules} />
+      </View>
+      {pattern.drone && (
+        <>
           <AppText
-            variant="heavy"
+            variant="bold"
             style={{
-              backgroundColor: colors.SUOneBlue,
-              padding: 10,
+              backgroundColor: colors.SUOrange,
+              textAlign: 'center',
               fontSize: 16,
             }}
           >
-            This Pattern is a legal Tech 1 build for a starting Mech if you are
-            new to the game.
+            Drone
           </AppText>
-        )}
-      </Collapsible>
-    </View>
+          <View style={{ flexDirection: 'row' }}>
+            <PatternSection
+              title="Systems"
+              systemModules={pattern.drone.systems}
+            />
+            <PatternSection
+              title="Modules"
+              systemModules={pattern.drone.modules}
+            />
+          </View>
+        </>
+      )}
+      {pattern.legalStarting && (
+        <AppText
+          variant="heavy"
+          style={{
+            backgroundColor: colors.SUOneBlue,
+            padding: 10,
+            fontSize: 16,
+          }}
+        >
+          This Pattern is a legal Tech 1 build for a starting Mech if you are
+          new to the game.
+        </AppText>
+      )}
+    </CollapsibleInfoRow>
   )
 }
 

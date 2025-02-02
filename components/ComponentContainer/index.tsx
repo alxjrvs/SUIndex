@@ -12,6 +12,7 @@ import { ChassisAbilities } from './ChassisAbilities'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
 import { RollTable } from '~/rulesReferences/RollTable'
 import { ChassisPatterns } from './ChassisPatterns'
+import { PropsWithChildren } from 'react'
 
 type Props = {
   header?: string
@@ -27,7 +28,8 @@ export function ComponentContainer({
   hidePadding = false,
   headerColor,
   component,
-}: Props) {
+  children,
+}: PropsWithChildren<Props>) {
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
   const isChassis = isMechChassis(component)
   return (
@@ -64,6 +66,7 @@ export function ComponentContainer({
               action={action}
             />
           ))}
+          {children}
           {component.notes && (
             <AppText style={{ borderWidth: 1, padding: 5 }}>
               {component.notes}

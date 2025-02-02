@@ -5,11 +5,13 @@ import { fonts } from '~/themes/apptheme'
 type Props = {
   variant?: keyof typeof fonts
   highlight?: 'none' | (typeof colors)[keyof typeof colors]
+  color?: (typeof colors)[keyof typeof colors]
 } & TextProps
 
 export function AppText({
   variant = 'regular',
   highlight = 'none',
+  color = colors.black,
   style,
   ...props
 }: Props) {
@@ -22,6 +24,7 @@ export function AppText({
           styles.highlight,
           { backgroundColor: highlight },
         ],
+        color && { color },
         style,
       ]}
     />

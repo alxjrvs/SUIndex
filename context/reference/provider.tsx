@@ -26,7 +26,6 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
         modules,
         equipments,
         mechChassis,
-        playerClasses,
         rollTables,
       ] = await Promise.all([
         AbilityTreeRequirement.all(),
@@ -37,20 +36,22 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
         Module.all(),
         Equipment.all(),
         MechChassis.all(),
-        PlayerClass.all(),
         RollTable.all(),
       ])
+      const playerClasses = await PlayerClass.allHydrated(
+        abilities as Ability[]
+      )
 
       setState({
         abilityTreeRequirements:
           abilityTreeRequirements as AbilityTreeRequirement[],
-        traits,
+        traits: traits as Trait[],
         abilities: abilities as Ability[],
-        keywords,
+        keywords: keywords as Keyword[],
         systems,
         modules,
         equipments,
-        mechChassis,
+        mechChassis: mechChassis as MechChassis[],
         playerClasses,
         rollTables: rollTables as RollTable[],
       })

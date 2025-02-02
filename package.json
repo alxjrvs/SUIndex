@@ -12,6 +12,8 @@
     "build:dev": "bun run build:dev:ios:sim && bun run build:dev:android",
     "build:dev:android": "npx eas-cli build --platform android --profile development --non-interactive --no-wait",
     "build:dev:ios:sim": "npx eas-cli build --platform ios --profile development-simulator --non-interactive --no-wait",
+    "export:web": "npx expo export --platform web",
+    "deploy:web": "bun run export:web && npx eas deploy",
     "ts:check": "tsc --noEmit",
     "expo:types": "npx expo customize tsconfig.json"
   },

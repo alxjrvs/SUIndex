@@ -10,6 +10,8 @@ const colors = {
   SUFourBlue: 'rgb(48,107,128)',
   SUFiveBlue: 'rgb(30,83,100)',
   SUSixBlue: 'rgb(6,52,65)',
+  SUBrick: 'rgb(173,84,60)',
+  SUPink: 'rgb(206,88,152)',
   black: 'rgb(40,32,25)',
   white: 'rgb(251,248,243)',
 }
