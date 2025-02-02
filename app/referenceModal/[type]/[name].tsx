@@ -1,29 +1,54 @@
 import { router, useLocalSearchParams } from 'expo-router'
-import { useEffect } from 'react'
-import { Platform, Pressable, StyleSheet, Text } from 'react-native'
+import { Platform, Pressable, StyleSheet } from 'react-native'
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated'
 import { ComponentContainer } from '~/components/ComponentContainer'
+import { ReferenceState } from '~/context/reference/types'
 import { useReference } from '~/context/reference/useReference'
+import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
+import { ComponentLike } from '~/rulesReferences/types'
+import { ReferencableComponentType } from '~/types'
 
-const allowedTypes = ['trait']
+const allowedTypes = ['trait', 'module', 'system']
 
+const filterByName =
+  (name: string) => (item: BaseComponentLike<ComponentLike>) =>
+    String(item.name).toLowerCase() === name.toLowerCase()
+
+const getDataByType = (
+  type: ReferencableComponentType,
+  reference: ReferenceState
+) => {
+  switch (type) {
+    case 'trait':
+      return reference.traits
+    case 'module':
+      return reference.modules
+    case 'system':
+      return reference.systems
+  }
+}
+
+function isReferencableComponentType(
+  type: string
+): type is ReferencableComponentType {
+  return allowedTypes.includes(type)
+}
 export default function ReferenceModal() {
   const { type, name } = useLocalSearchParams<{ type: string; name: string }>()
 
-  const { traits } = useReference()
+  const reference = useReference()
 
-  if (!allowedTypes.includes(type)) {
-    router.back()
+  console.log(type, name)
+  if (!isReferencableComponentType(type)) {
     return null
   }
+  console.log('here')
 
-  const data = traits
+  const data = getDataByType(type, reference)
+  const component = data.find(filterByName(name))
+  console.log(component)
 
-  const component = data.find(
-    (item) => item.name.toLowerCase() === name.toLowerCase()
-  )
   if (!component) {
-    router.back()
     return null
   }
 

@@ -1,5 +1,6 @@
 import { Link } from 'expo-router'
 import { PropsWithChildren } from 'react'
+import colors from '~/colors'
 import { ReferencableComponentType } from '~/types'
 
 type Props = {
@@ -14,7 +15,10 @@ export default function ReferenceLink({
   if (!type) return children
   return (
     <Link
-      style={{ textDecorationLine: 'underline' }}
+      style={{
+        textDecorationLine: 'underline',
+        textDecorationColor: colors.white,
+      }}
       href={`/referenceModal/${type}/${name}`}
     >
       {children}

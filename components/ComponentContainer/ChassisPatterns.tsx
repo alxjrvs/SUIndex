@@ -1,9 +1,11 @@
 import { View } from 'react-native'
 import { PatternReference } from '~/rulesReferences/types'
 import { AppText } from '../AppText'
-import { collapseMultiples } from '~/utils/formatters'
+import { capitalizeFirstLetter, collapseMultiples } from '~/utils/formatters'
 import { CollapsibleInfoRow } from '../CollapsibleInfoRow'
 import colors from '~/colors'
+import { ReferencableComponentType } from '~/types'
+import ReferenceLink from '../ReferenceLink'
 
 type Props = {
   patterns: PatternReference[]
@@ -35,8 +37,8 @@ function ChassisPattern({ pattern }: { pattern: PatternReference }) {
         {pattern.description}
       </AppText>
       <View style={{ flexDirection: 'row' }}>
-        <PatternSection title="Systems" systemModules={pattern.systems} />
-        <PatternSection title="Modules" systemModules={pattern.modules} />
+        <PatternSection type="system" systemModules={pattern.systems} />
+        <PatternSection type="module" systemModules={pattern.modules} />
       </View>
       {pattern.drone && (
         <>
@@ -52,11 +54,11 @@ function ChassisPattern({ pattern }: { pattern: PatternReference }) {
           </AppText>
           <View style={{ flexDirection: 'row' }}>
             <PatternSection
-              title="Systems"
+              type="system"
               systemModules={pattern.drone.systems}
             />
             <PatternSection
-              title="Modules"
+              type="module"
               systemModules={pattern.drone.modules}
             />
           </View>
@@ -81,9 +83,9 @@ function ChassisPattern({ pattern }: { pattern: PatternReference }) {
 
 function PatternSection({
   systemModules,
-  title,
+  type,
 }: {
-  title: string
+  type: ReferencableComponentType
   systemModules: string[]
 }) {
   const collapsed = collapseMultiples(systemModules)
@@ -99,14 +101,20 @@ function PatternSection({
       }}
     >
       <AppText
-        style={{ textDecorationLine: 'underline', fontSize: 16 }}
+        style={{ textDecorationLine: 'underline', fontSize: 18 }}
         variant="bold"
       >
-        {title}
+        {capitalizeFirstLetter(type)}s
       </AppText>
-      {collapsed.map((system, i) => (
-        <AppText key={i}>{system}</AppText>
-      ))}
+      {collapsed.map((system, i) => {
+        const cleanSystem = system.replace(/[xX]\d+/, '')
+
+        return (
+          <ReferenceLink type={type} name={cleanSystem} key={i}>
+            <AppText>{system}</AppText>
+          </ReferenceLink>
+        )
+      })}
     </View>
   )
 }
