@@ -17,7 +17,7 @@ export default function ReferenceLink({
     <Link
       style={{
         textDecorationLine: 'underline',
-        textDecorationColor: colors.white,
+        textDecorationColor: colors.black,
       }}
       href={`/referenceModal/${type}/${name}`}
     >
