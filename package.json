@@ -14,6 +14,7 @@
     "build:dev:ios:sim": "npx eas-cli build --platform ios --profile development-simulator --non-interactive --no-wait",
     "export:web": "npx expo export --platform web",
     "deploy:web": "bun run export:web && npx eas deploy",
+    "deploy:web:prod": "bun run export:web && npx eas deploy --prod",
     "ts:check": "tsc --noEmit",
     "expo:types": "npx expo customize tsconfig.json"
   },
