@@ -31,7 +31,7 @@ export function DataList({
           {v.cost ? (
             <ActivationCost invert={invert} label={v.value} />
           ) : (
-            <AppText variant="bold" style={[textColor && { color: textColor }]}>
+            <AppText style={[textColor && { color: textColor }]}>
               {v.value}
             </AppText>
           )}
