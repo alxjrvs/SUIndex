@@ -35,7 +35,9 @@ export function ComponentContainer({
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
   const isChassis = isMechChassis(component)
   return (
-    <View style={[{ backgroundColor: colors.SULightBlue }, style]}>
+    <View
+      style={[{ backgroundColor: colors.SULightBlue, width: '100%' }, style]}
+    >
       <Header
         backgroundColor={backgroundColor}
         level={isAbility(component) ? component.level : undefined}

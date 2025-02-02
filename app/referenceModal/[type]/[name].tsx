@@ -48,7 +48,6 @@ export default function ReferenceModal() {
           justifyContent: 'center',
           backgroundColor: 'white',
           maxWidth: Platform.select({
-            web: 1024 as unknown as '100%',
             default: '100%',
           }),
           minWidth: Platform.select({
