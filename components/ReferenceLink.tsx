@@ -5,11 +5,13 @@ import { ReferencableComponentType } from '~/types'
 
 type Props = {
   type: ReferencableComponentType | undefined
+  underlineColor?: (typeof colors)[keyof typeof colors]
   name: string
 }
 export default function ReferenceLink({
   type,
   children,
+  underlineColor = colors.black,
   name,
 }: PropsWithChildren<Props>) {
   if (!type) return children
@@ -17,7 +19,7 @@ export default function ReferenceLink({
     <Link
       style={{
         textDecorationLine: 'underline',
-        textDecorationColor: colors.black,
+        textDecorationColor: underlineColor,
       }}
       href={`/referenceModal/${type}/${name}`}
     >

@@ -32,7 +32,11 @@ export function DataList({
           {v.cost ? (
             <ActivationCost invert={invert} label={v.value} />
           ) : (
-            <ReferenceLink type={v.type} name={String(v.value).split('(')[0]}>
+            <ReferenceLink
+              type={v.type}
+              underlineColor={textColor}
+              name={String(v.value).split('(')[0]}
+            >
               <AppText style={[textColor && { color: textColor }]}>
                 {v.value}
               </AppText>
