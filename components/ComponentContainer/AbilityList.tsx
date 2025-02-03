@@ -21,7 +21,7 @@ export function AbilityList({
       textColor={colors.white}
       header={`${abilityKey} Tree`}
     >
-      <View>
+      <View style={{ borderBottomWidth: 35, borderBottomColor: headerColor }}>
         {abilities
           .sort((a, b) => Number(a.level) - Number(b.level))
           .map((ability) => (

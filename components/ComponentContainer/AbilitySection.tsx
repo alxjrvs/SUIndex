@@ -27,16 +27,18 @@ export function AbilitySection({
       >
         {sectionTitle}
       </AppText>
-      {abilitiesKeyArray.map((abilityKey) => {
-        return (
-          <AbilityList
-            key={abilityKey}
-            abilities={abilities[abilityKey]}
-            headerColor={headerColor}
-            abilityKey={abilityKey}
-          />
-        )
-      })}
+      <View style={{ gap: 5 }}>
+        {abilitiesKeyArray.map((abilityKey) => {
+          return (
+            <AbilityList
+              key={abilityKey}
+              abilities={abilities[abilityKey]}
+              headerColor={headerColor}
+              abilityKey={abilityKey}
+            />
+          )
+        })}
+      </View>
     </View>
   )
 }
