@@ -1,6 +1,8 @@
 import { DataValue } from '~/types'
 
-export interface ComponentLike {
+export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined
+
+export interface ComponentLikeData {
   name?: string
   description?: string
   slotsRequired?: number
@@ -18,27 +20,29 @@ export interface ComponentLike {
   actions?: ActionData[]
 }
 
-export interface AbilityTreeRequirementData extends ComponentLike {
-  tree: string | number
-  requirement: string[]
-}
-
-export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined
-
-type BaseData = {
+interface BaseData extends ComponentLikeData {
   name: string
   description: string
+}
+
+export interface AbilityTreeRequirementData extends ComponentLikeData {
+  tree: string | number
+  requirement: string[]
 }
 
 export type TraitData = BaseData
 export type KeywordData = BaseData
 
-export type TraitReference = {
+export interface TraitReference {
   type: string
   amount?: number
 }
 
-export type AbilityData = BaseData & {
+type RollTableReference = {
+  [key: string]: string
+}
+
+export interface AbilityData extends BaseData {
   tree: string
   level: number | string
   effect?: string
@@ -49,21 +53,17 @@ export type AbilityData = BaseData & {
   rollTable?: RollTableReference
 }
 
-type RollTableReference = {
-  [key: string]: string
-}
-
-type DamageData = {
+interface DamageData {
   type: string
   amount: number | string
 }
 
-type StatBonusData = {
+interface StatBonusData {
   stat: string
   bonus: number
 }
 
-export type ActionData = BaseData & {
+export interface ActionData extends BaseData {
   activationCost: number | string
   range: string
   actionType: string
@@ -75,7 +75,7 @@ export type ActionData = BaseData & {
   recommended?: boolean
 }
 
-export type SystemModuleData = BaseData & {
+export interface SystemModuleData extends BaseData {
   techLevel: TechLevel
   slotsRequired: number
   salvageValue: number
@@ -91,7 +91,7 @@ export type SystemModuleData = BaseData & {
   actions?: ActionData[]
 }
 
-export type EquipmentData = BaseData & {
+export interface EquipmentData extends BaseData {
   techLevel?: TechLevel
   traits?: TraitReference[]
   damage?: DamageData
@@ -124,27 +124,28 @@ type CorePattern = {
   systems: string[]
   modules: string[]
 }
+
+export interface DigestedRollTable extends BaseData {
+  order: number
+  key: string
+}
+
 export type PatternReference = BaseData &
   CorePattern & {
     legalStarting?: boolean
     drone?: CorePattern
   }
 
-export type MechChassisData = BaseData & {
+export interface MechChassisData extends BaseData {
   stats: ChassisStats
   chassis_abilities: Partial<ActionData>[]
   patterns: PatternReference[]
 }
 
-export type PlayerClassData = BaseData & {
+export interface PlayerClassData extends BaseData {
   type: string
   coreClasses: string[]
   coreAbilities: string[]
   advancedAbilities: string
   legendaryAbilities: string[]
-}
-
-export type DigestedRollTable = BaseData & {
-  order: number
-  key: string
 }
