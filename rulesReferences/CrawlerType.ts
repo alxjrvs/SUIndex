@@ -1,4 +1,5 @@
 import { BaseComponentLike } from './BaseComponentLike'
+import { ComponentAction } from './ComponentAction'
 import { CrawlerTypeData } from './types'
 
 export class CrawlerType extends BaseComponentLike<CrawlerTypeData> {
