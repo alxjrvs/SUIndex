@@ -5,13 +5,13 @@ import { ComponentContainer } from '~/components/ComponentContainer'
 import { ReferenceState } from '~/context/reference/types'
 import { useReference } from '~/context/reference/useReference'
 import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLike } from '~/rulesReferences/types'
+import { ComponentLikeData } from '~/rulesReferences/types'
 import { ReferencableComponentType } from '~/types'
 
 const allowedTypes = ['trait', 'module', 'system']
 
 const filterByName =
-  (name: string) => (item: BaseComponentLike<ComponentLike>) =>
+  (name: string) => (item: BaseComponentLike<ComponentLikeData>) =>
     String(item.name).toLowerCase() === name.toLowerCase()
 
 const getDataByType = (

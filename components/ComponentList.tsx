@@ -1,14 +1,14 @@
 import List from './List'
 import { ComponentContainer } from './ComponentContainer'
 import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLike, TechLevel } from '~/rulesReferences/types'
+import { ComponentLikeData, TechLevel } from '~/rulesReferences/types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { View } from 'react-native'
 import { ComponentProps, useState } from 'react'
 import { TechLevelFilter } from './TechLevelFilter'
 
 type Props = {
-  data: BaseComponentLike<ComponentLike>[]
+  data: BaseComponentLike<ComponentLikeData>[]
   showTLFilter?: boolean
   headerColor?: ComponentProps<typeof ComponentContainer>['headerColor']
   tag: string
