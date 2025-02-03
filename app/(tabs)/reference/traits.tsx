@@ -1,5 +1,5 @@
 import { useReference } from '~/context/reference/useReference'
-import ComponentList from '~/components/ComponentList'
+import { ComponentList } from '~/components/ComponentList'
 import colors from '~/colors'
 
 export default function Traits() {

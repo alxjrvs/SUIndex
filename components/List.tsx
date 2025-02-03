@@ -3,6 +3,8 @@ import { FlatList, FlatListProps, Platform, View } from 'react-native'
 export default function List<T = unknown>(props: FlatListProps<T>) {
   return (
     <FlatList
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={() => <View style={{ height: 20 }} />}
       {...props}
       style={[

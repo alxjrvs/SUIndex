@@ -20,7 +20,7 @@ const getDataByType = (
 ) => {
   switch (type) {
     case 'trait':
-      return reference.traits
+      return [...reference.traits, ...reference.keywords]
     case 'module':
       return reference.modules
     case 'system':
@@ -38,15 +38,12 @@ export default function ReferenceModal() {
 
   const reference = useReference()
 
-  console.log(type, name)
   if (!isReferencableComponentType(type)) {
     return null
   }
-  console.log('here')
 
   const data = getDataByType(type, reference)
   const component = data.find(filterByName(name))
-  console.log(component)
 
   if (!component) {
     return null

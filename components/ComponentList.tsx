@@ -3,10 +3,8 @@ import { ComponentContainer } from './ComponentContainer'
 import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
 import { ComponentLike, TechLevel } from '~/rulesReferences/types'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { Pressable, View } from 'react-native'
+import { View } from 'react-native'
 import { ComponentProps, useState } from 'react'
-import { TechLevelDisplay } from './TechLevelDisplay'
-import colors from '~/colors'
 import { TechLevelFilter } from './TechLevelFilter'
 
 type Props = {
@@ -15,7 +13,7 @@ type Props = {
   headerColor?: ComponentProps<typeof ComponentContainer>['headerColor']
   tag: string
 }
-export default function ComponentList({
+export function ComponentList({
   data,
   tag,
   headerColor,

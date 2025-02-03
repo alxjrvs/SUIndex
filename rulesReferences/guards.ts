@@ -1,6 +1,7 @@
 import { Ability } from './Ability'
 import { BaseComponentLike } from './BaseComponentLike'
 import { MechChassis } from './MechChassis'
+import { PlayerClass } from './PlayerClass'
 import { RollTable } from './RollTable'
 import { Trait } from './Trait'
 import { ComponentLike } from './types'
@@ -21,6 +22,12 @@ export function isTrait(
   component: BaseComponentLike<ComponentLike>
 ): component is Trait {
   return component instanceof Trait
+}
+
+export function isPlayerClass(
+  component: BaseComponentLike<ComponentLike>
+): component is PlayerClass {
+  return component instanceof PlayerClass
 }
 
 export function isRollTable(

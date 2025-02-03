@@ -22,6 +22,7 @@ export function ActivationCost({ label, fontSize, invert = false }: Props) {
             textTransform: 'uppercase',
             color,
             fontSize: fontSize || 15,
+            paddingLeft: 2,
             zIndex: 2,
           },
         ]}

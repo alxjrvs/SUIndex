@@ -6,13 +6,19 @@ import { ComponentLike } from '~/rulesReferences/types'
 import { Header } from './Header'
 import { Action } from './Action'
 import { VerticalBar } from './VerticalBar'
-import { isAbility, isMechChassis, isRollTable } from '~/rulesReferences/guards'
+import {
+  isAbility,
+  isMechChassis,
+  isPlayerClass,
+  isRollTable,
+} from '~/rulesReferences/guards'
 import { ChassisStats } from './ChassisStats'
 import { ChassisAbilities } from './ChassisAbilities'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
 import { RollTable } from '~/rulesReferences/RollTable'
 import { ChassisPatterns } from './ChassisPatterns'
 import { PropsWithChildren } from 'react'
+import { AbilitySection } from './AbilitySection'
 
 type Props = {
   header?: string
@@ -34,6 +40,7 @@ export function ComponentContainer({
 }: PropsWithChildren<Props>) {
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
   const isChassis = isMechChassis(component)
+  const isPC = isPlayerClass(component)
   return (
     <View
       style={[{ backgroundColor: colors.SULightBlue, width: '100%' }, style]}
@@ -74,6 +81,30 @@ export function ComponentContainer({
             />
           ))}
           {children}
+
+          {isPC && (
+            <AbilitySection
+              headerColor={colors.SUBrick}
+              sectionTitle="Core Abilities"
+              abilities={component.coreAbilities}
+            />
+          )}
+          {isPC && component.advancedAbilities.length > 0 && (
+            <AbilitySection
+              headerColor={colors.SUOrange}
+              sectionTitle="Advanced Abilities"
+              abilities={{
+                ['Advanced Abilities']: component.advancedAbilities,
+              }}
+            />
+          )}
+          {isPC && Object.values(component.legendaryAbilities).length > 0 && (
+            <AbilitySection
+              headerColor={colors.SUPink}
+              sectionTitle="Legendary Abilities"
+              abilities={component.legendaryAbilities}
+            />
+          )}
           {component.notes && (
             <AppText style={{ borderWidth: 1, padding: 5 }}>
               {component.notes}

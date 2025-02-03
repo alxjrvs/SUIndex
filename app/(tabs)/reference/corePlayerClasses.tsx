@@ -1,8 +1,13 @@
-import PlayerClassList from '~/components/PlayerClassList'
+import { ComponentList } from '~/components/ComponentList'
 import { useReference } from '~/context/reference/useReference'
 
 export default function CorePlayerClasses() {
   const { playerClasses } = useReference()
 
-  return <PlayerClassList data={playerClasses.filter((pc) => pc.isCore)} />
+  return (
+    <ComponentList
+      data={playerClasses.filter((pc) => pc.isCore)}
+      tag="core-player-class"
+    />
+  )
 }

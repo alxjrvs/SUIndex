@@ -1,4 +1,4 @@
-import ComponentList from '~/components/ComponentList'
+import { ComponentList } from '~/components/ComponentList'
 import { useReference } from '~/context/reference/useReference'
 
 export default function Equipments() {
