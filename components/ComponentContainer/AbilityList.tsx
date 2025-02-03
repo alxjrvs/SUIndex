@@ -1,9 +1,9 @@
 import { View } from 'react-native'
 import colors from '~/colors'
 import { Ability } from '~/rulesReferences/Ability'
-import { ComponentContainer } from '.'
 import { AppText } from '../AppText'
 import { CollapsibleInfoRow } from '../CollapsibleInfoRow'
+import { ComponentFrame } from './ComponentFrame'
 
 export function AbilityList({
   abilities,
@@ -25,14 +25,14 @@ export function AbilityList({
         {abilities
           .sort((a, b) => Number(a.level) - Number(b.level))
           .map((ability) => (
-            <ComponentContainer
+            <ComponentFrame
               verticalBarBackground={headerColor}
               headerColor={colors.black}
               component={ability}
               key={ability.name}
             >
               <AppText>{ability.effect}</AppText>
-            </ComponentContainer>
+            </ComponentFrame>
           ))}
       </View>
     </CollapsibleInfoRow>

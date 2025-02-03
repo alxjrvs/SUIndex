@@ -27,7 +27,8 @@ export function Header({
               flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
-              alignContent: 'center',
+              maxWidth: 35,
+              minWidth: 35,
             }}
           >
             <AppText
@@ -35,7 +36,7 @@ export function Header({
               style={{
                 color: colors.white,
                 fontSize: 25,
-                textAlign: 'center',
+                paddingRight: 5,
               }}
             >
               {level}
