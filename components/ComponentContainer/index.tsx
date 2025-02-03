@@ -85,17 +85,15 @@ export function ComponentContainer({
           {children}
           {isCrawerT &&
             component.abilities.map((ability) => (
-              <>
-                <View>
-                  <AppText variant="bold">{ability.name}</AppText>
-                  <AppText>{ability.description}</AppText>
-                  {ability.rollTable && (
-                    <MiniRollTableDisplay
-                      rollTable={RollTable.digestedRollTable(ability.rollTable)}
-                    />
-                  )}
-                </View>
-              </>
+              <View>
+                <AppText variant="bold">{ability.name}</AppText>
+                <AppText>{ability.description}</AppText>
+                {ability.rollTable && (
+                  <MiniRollTableDisplay
+                    rollTable={RollTable.digestedRollTable(ability.rollTable)}
+                  />
+                )}
+              </View>
             ))}
           {isPC && (
             <AbilitySection
