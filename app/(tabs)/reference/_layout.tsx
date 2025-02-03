@@ -1,10 +1,11 @@
 import Drawer from 'expo-router/drawer'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import colors from '~/colors'
 
 export default function ReferenceRoot() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.SUBlue }}>
+      <Drawer screenOptions={{ headerStyle: { borderBottomWidth: 0 } }}>
         <Drawer.Screen
           name="index"
           options={{
