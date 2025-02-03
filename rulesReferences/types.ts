@@ -8,13 +8,13 @@ export interface ComponentLikeData {
   slotsRequired?: number
   techLevel?: TechLevel | undefined
   notes?: string
-  traits?: { type: string; amount?: number }[]
+  traits?: TraitReference[]
   details?: DataValue[]
   activationCost?: number | string
+  recommended?: boolean
   range?: string
   damage?: DamageData
   actionType?: string
-  recommended?: boolean
   salvageValue?: number
   rollTable?: RollTableReference
   actions?: ActionData[]
@@ -46,11 +46,6 @@ export interface AbilityData extends BaseData {
   tree: string
   level: number | string
   effect?: string
-  activationCost?: number
-  actionType?: string
-  range?: string
-  traits?: TraitReference[]
-  rollTable?: RollTableReference
 }
 
 interface DamageData {
@@ -67,12 +62,8 @@ export interface ActionData extends BaseData {
   activationCost: number | string
   range: string
   actionType: string
-  traits?: TraitReference[]
-  damage?: DamageData
-  rollTable?: RollTableReference
   options: { label: string; value: string }[]
   stats?: ChassisStats
-  recommended?: boolean
 }
 
 export interface SystemModuleData extends BaseData {
@@ -84,7 +75,6 @@ export interface SystemModuleData extends BaseData {
   traits?: TraitReference[]
   actionType?: string
   statBonus?: StatBonusData
-  recommended?: boolean
   rollTable?: RollTableReference
   notes?: string
   activationCost?: number
@@ -148,4 +138,8 @@ export interface PlayerClassData extends BaseData {
   coreAbilities: string[]
   advancedAbilities: string
   legendaryAbilities: string[]
+}
+
+export interface CrawlerTypeData extends BaseData {
+  abilities: ComponentLikeData[]
 }

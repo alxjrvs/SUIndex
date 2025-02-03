@@ -1,3 +1,4 @@
+import { CrawlerType } from '~/rulesReferences/CrawlerType'
 import { Ability } from '../../rulesReferences/Ability'
 import { AbilityTreeRequirement } from '../../rulesReferences/AbilityTreeRequirement'
 import { Equipment } from '../../rulesReferences/Equipment'
@@ -13,6 +14,7 @@ export type ReferenceState = {
   abilities: Ability[]
   abilityTreeRequirements: AbilityTreeRequirement[]
   equipments: Equipment[]
+  crawlerTypes: CrawlerType[]
   keywords: Keyword[]
   mechChassis: MechChassis[]
   modules: Module[]

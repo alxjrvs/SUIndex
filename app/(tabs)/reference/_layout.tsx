@@ -48,6 +48,13 @@ export default function ReferenceRoot() {
           }}
         />
         <Drawer.Screen
+          name="crawlerTypes"
+          options={{
+            drawerLabel: 'Crawler Types',
+            title: 'Crawler Types',
+          }}
+        />
+        <Drawer.Screen
           name="mechChassis"
           options={{
             drawerLabel: 'Mech Chassis',

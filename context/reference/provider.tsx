@@ -11,6 +11,7 @@ import { System } from '~/rulesReferences/System'
 import { Trait } from '~/rulesReferences/Trait'
 import ReferenceContext from './context'
 import { initialState } from './initialState'
+import { CrawlerType } from '~/rulesReferences/CrawlerType'
 
 export default function ReferenceProvider(props: React.PropsWithChildren) {
   const [state, setState] = useState(initialState)
@@ -27,6 +28,7 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
         equipments,
         mechChassis,
         rollTables,
+        crawlerTypes,
       ] = await Promise.all([
         AbilityTreeRequirement.all(),
         Trait.all(),
@@ -37,6 +39,7 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
         Equipment.all(),
         MechChassis.all(),
         RollTable.all(),
+        CrawlerType.all(),
       ])
       const playerClasses = await PlayerClass.allHydrated(
         abilities as Ability[]
@@ -47,6 +50,7 @@ export default function ReferenceProvider(props: React.PropsWithChildren) {
           abilityTreeRequirements as AbilityTreeRequirement[],
         traits: traits as Trait[],
         abilities: abilities as Ability[],
+        crawlerTypes,
         keywords: keywords as Keyword[],
         systems,
         modules,

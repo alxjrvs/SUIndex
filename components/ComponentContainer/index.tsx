@@ -2,12 +2,13 @@ import { View, ViewStyle } from 'react-native'
 import colors, { levelToBlue } from '~/colors'
 import { AppText } from '../AppText'
 import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLike } from '~/rulesReferences/types'
+import { ComponentLikeData } from '~/rulesReferences/types'
 import { Header } from './Header'
 import { Action } from './Action'
 import { VerticalBar } from './VerticalBar'
 import {
   isAbility,
+  isCrawlerType,
   isMechChassis,
   isPlayerClass,
   isRollTable,
@@ -26,7 +27,7 @@ type Props = {
   hidePadding?: boolean
   headerColor?: (typeof colors)[keyof typeof colors]
   verticalBarBackground?: (typeof colors)[keyof typeof colors]
-  component: BaseComponentLike<ComponentLike>
+  component: BaseComponentLike<ComponentLikeData>
 }
 
 export function ComponentContainer({
@@ -41,6 +42,7 @@ export function ComponentContainer({
   const backgroundColor = headerColor || levelToBlue(component.techLevel)
   const isChassis = isMechChassis(component)
   const isPC = isPlayerClass(component)
+  const isCrawerT = isCrawlerType(component)
   return (
     <View
       style={[{ backgroundColor: colors.SULightBlue, width: '100%' }, style]}
@@ -81,7 +83,20 @@ export function ComponentContainer({
             />
           ))}
           {children}
-
+          {isCrawerT &&
+            component.abilities.map((ability) => (
+              <>
+                <View>
+                  <AppText variant="bold">{ability.name}</AppText>
+                  <AppText>{ability.description}</AppText>
+                  {ability.rollTable && (
+                    <MiniRollTableDisplay
+                      rollTable={RollTable.digestedRollTable(ability.rollTable)}
+                    />
+                  )}
+                </View>
+              </>
+            ))}
           {isPC && (
             <AbilitySection
               headerColor={colors.SUBrick}

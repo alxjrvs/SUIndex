@@ -35,8 +35,4 @@ export class RollTable extends BaseComponentLike<RollTableData> {
   get table() {
     return RollTable.digestedRollTable(this.data.rollTable)
   }
-
-  get activationCurrency() {
-    return ''
-  }
 }

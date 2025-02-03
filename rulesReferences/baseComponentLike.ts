@@ -1,16 +1,23 @@
+import axios from 'axios'
 import { ComponentAction } from './ComponentAction'
-import { ReferencesHydrator } from './ReferencesHydrator'
-import { ComponentLike, TechLevel } from './types'
+import { ComponentLikeData, TechLevel } from './types'
 import { generateDataListValues } from '~/utils/formatters'
 
-export class BaseComponentLike<T extends ComponentLike> {
+export class BaseComponentLike<T extends ComponentLikeData> {
   static rulesKey = 'Not implemented'
 
   static async fetch() {
     if (this.rulesKey === 'Not implemented') {
       throw new Error('rulesKey not implemented')
     }
-    return ReferencesHydrator.getRules(this.rulesKey)
+
+    const url = `https://raw.githubusercontent.com/alxjrvs/salvageunion-data/refs/heads/main/data/${this.rulesKey}.json`
+    try {
+      const { data } = await axios.get(url)
+      return data
+    } catch {
+      return []
+    }
   }
 
   static async all() {
@@ -89,6 +96,6 @@ export class BaseComponentLike<T extends ComponentLike> {
   }
 
   get activationCurrency(): string {
-    throw new Error('Not implemented')
+    return ''
   }
 }
