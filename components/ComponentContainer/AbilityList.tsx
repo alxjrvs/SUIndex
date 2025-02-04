@@ -27,8 +27,10 @@ export function AbilityList({
           .map((ability) => (
             <ComponentFrame
               verticalBarBackground={headerColor}
+              level={ability.level}
+              header={ability.name || ''}
               headerColor={colors.black}
-              component={ability}
+              details={ability.details}
               key={ability.name}
             >
               <AppText>{ability.effect}</AppText>

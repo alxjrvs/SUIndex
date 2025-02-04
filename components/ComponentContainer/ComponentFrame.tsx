@@ -1,56 +1,73 @@
-import { View, ViewStyle } from 'react-native'
+import { StyleProp, View, ViewStyle } from 'react-native'
 import colors, { levelToBlue } from '~/colors'
 import { AppText } from '../AppText'
-import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
-import { ComponentLikeData } from '~/context/reference/models/types'
 import { Header } from './Header'
 import { VerticalBar } from './VerticalBar'
-import {
-  isAbility,
-  isMechChassis,
-  isRollTable,
-} from '~/context/reference/models/guards'
-import { ChassisStats } from './ChassisStats'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
 import { RollTable } from '~/context/reference/models/RollTable'
 import { PropsWithChildren } from 'react'
+import { TechLevel } from '~/context/reference/models/types'
+import { DataValue } from '~/types'
 
 type Props = {
-  header?: string
+  header: string
   style?: ViewStyle
   hidePadding?: boolean
   headerColor?: (typeof colors)[keyof typeof colors]
   verticalBarBackground?: (typeof colors)[keyof typeof colors]
-  component: BaseComponentLike<ComponentLikeData>
+  headerContent?: React.ReactNode
+  level?: string | number | undefined
+  contentContainerStyle?: StyleProp<ViewStyle>
+  techLevel?: TechLevel
+  details: DataValue[]
+  description?: string
+  notes?: string
+  rollTable?: Record<string, string>
+  salveageValue?: number
+  slotsRequired?: number
 }
 
 export function ComponentFrame({
   header,
   style,
   hidePadding = false,
+  level,
   headerColor,
-  component,
   verticalBarBackground,
   children,
+  headerContent,
+  contentContainerStyle = {},
+  details,
+  description,
+  techLevel = undefined,
+  rollTable,
+  notes,
+  salveageValue,
+  slotsRequired,
 }: PropsWithChildren<Props>) {
-  const backgroundColor = headerColor || levelToBlue(component.techLevel)
-  const isChassis = isMechChassis(component)
+  const backgroundColor = headerColor || levelToBlue(techLevel)
+  const forceVerticalBar =
+    verticalBarBackground !== undefined ? !!verticalBarBackground : false
+  const showVerticalBar =
+    forceVerticalBar || techLevel !== undefined || level !== undefined
   return (
     <View
       style={[{ backgroundColor: colors.SULightBlue, width: '100%' }, style]}
     >
       <Header
         backgroundColor={backgroundColor}
-        level={isAbility(component) ? component.level : undefined}
-        header={header || component.name || ''}
-        details={component.details}
+        level={level}
+        header={header}
+        details={details}
       >
-        {isChassis && <ChassisStats stats={component.stats} />}
+        {headerContent}
       </Header>
       <View style={{ flexDirection: 'row' }}>
         <VerticalBar
-          forceShow={!!verticalBarBackground}
-          component={component}
+          visible={showVerticalBar}
+          techLevel={techLevel}
+          slotsRequired={slotsRequired}
+          salvageValue={salveageValue}
           backgroundColor={verticalBarBackground || backgroundColor}
         />
         <View
@@ -62,23 +79,18 @@ export function ComponentFrame({
               gap: 30,
               justifyContent: 'center',
             },
-            isChassis && { paddingTop: 60 },
+            contentContainerStyle,
           ]}
         >
-          {component.description && (
-            <AppText variant="medium">{component.description}</AppText>
-          )}
+          {description && <AppText variant="medium">{description}</AppText>}
 
           {children}
-          {component.notes && (
-            <AppText style={{ borderWidth: 1, padding: 5 }}>
-              {component.notes}
-            </AppText>
+          {notes && (
+            <AppText style={{ borderWidth: 1, padding: 5 }}>{notes}</AppText>
           )}
-          {component.rollTable && (
+          {rollTable && (
             <MiniRollTableDisplay
-              rollTable={RollTable.digestedRollTable(component.rollTable)}
-              showCommand={!isRollTable(component)}
+              rollTable={RollTable.digestedRollTable(rollTable)}
             />
           )}
         </View>

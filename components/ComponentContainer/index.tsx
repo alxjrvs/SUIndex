@@ -3,12 +3,17 @@ import colors from '~/colors'
 import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
 import { ComponentLikeData } from '~/context/reference/models/types'
 import { Action } from './Action'
-import { isMechChassis, isPlayerClass } from '~/context/reference/models/guards'
+import {
+  isAbility,
+  isMechChassis,
+  isPlayerClass,
+} from '~/context/reference/models/guards'
 import { ChassisAbilities } from './ChassisAbilities'
 import { ChassisPatterns } from './ChassisPatterns'
 import { PropsWithChildren } from 'react'
 import { AbilitySection } from './AbilitySection'
 import { ComponentFrame } from './ComponentFrame'
+import { ChassisStats } from './ChassisStats'
 
 type Props = {
   header?: string
@@ -35,9 +40,18 @@ export function ComponentContainer({
       style={style}
       verticalBarBackground={verticalBarBackground}
       hidePadding={hidePadding}
-      header={header}
+      header={header || component.name || ''}
       headerColor={headerColor}
-      component={component}
+      techLevel={component.techLevel}
+      headerContent={isChassis && <ChassisStats stats={component.stats} />}
+      contentContainerStyle={[isChassis && { paddingTop: 60 }]}
+      level={isAbility(component) ? component.level : undefined}
+      details={component.details}
+      description={component.description}
+      notes={component.notes}
+      rollTable={component.rollTable}
+      salveageValue={component.salvageValue}
+      slotsRequired={component.slotsRequired}
     >
       {children}
       {component.actions.map((action, index) => (

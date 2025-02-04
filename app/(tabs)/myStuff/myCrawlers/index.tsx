@@ -1,4 +1,4 @@
-import { ComponentProps, PropsWithChildren } from 'react'
+import { PropsWithChildren } from 'react'
 import {
   TextInput,
   TextInputProps,
@@ -8,16 +8,9 @@ import {
 } from 'react-native'
 import colors from '~/colors'
 import { AppText } from '~/components/AppText'
-import {
-  useForm,
-  Controller,
-  Control,
-  ControllerRenderProps,
-} from 'react-hook-form'
+import { ComponentFrame } from '~/components/ComponentContainer/ComponentFrame'
 
 import { createUserCrawler } from '~/context/userData/fixtures/createUserCrawler'
-import { UserCrawlerData } from '~/context/userData/types'
-import { panHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/PanGestureHandler'
 
 export default function MyCrawlers() {
   const haven = createUserCrawler({
@@ -26,98 +19,64 @@ export default function MyCrawlers() {
     description: 'A small exploratory crawler',
     weaponSystem: 'mechapult',
   })
-  const {
-    control,
-    // handleSubmit,
-    // formState: { errors },
-  } = useForm({ defaultValues: haven })
-
   return (
     <View style={{ padding: 5, gap: 10 }}>
       {/* <AppText style={{ transform: [{ rotate: '-90deg' }] }}>Crawler</AppText> */}
       <RoundFrame>
         <View style={{ flexDirection: 'row', gap: 10 }}>
-          <LiveFormInput
+          <LiveFormDisplay
             style={{ flex: 1 }}
-            control={control}
             label="Name"
-            name="name"
+            value={haven.name}
           />
-          <LiveFormInput
+          <LiveFormDisplay
             style={{ flex: 1 }}
-            control={control}
             label="Type"
-            name="type"
+            value={haven.type}
           />
         </View>
-        <LiveFormInput
-          control={control}
+        <LiveFormDisplay
           multiline
           label="Description"
-          name="description"
-          forceValue="Foo"
+          value={haven.description}
         />
+      </RoundFrame>
+      <RoundFrame>
+        <ComponentFrame component={haven}>
+          <AppText>Systems</AppText>
+        </ComponentFrame>
       </RoundFrame>
     </View>
   )
 }
 
-function LiveFormInput({
+function LiveFormDisplay({
   label,
-  control,
-  name,
   style = {},
   inputStyle = {},
   multiline = false,
   numeric = false,
-  disabled = false,
-  forceValue,
+  value,
 }: {
   label: string
-  control: Control<UserCrawlerData, unknown>
-  name: ControllerRenderProps<UserCrawlerData>['name']
   style?: ViewStyle
   inputStyle?: TextStyle
   multiline?: boolean
   numeric?: boolean
   disabled?: boolean
-  forceValue?: string
+  value: string
 }) {
   return (
     <LiveFormFrame label={label} style={style}>
-      {forceValue ? (
-        <Controller
-          control={control}
-          disabled={disabled}
-          render={({ field }) => {
-            return (
-              <LiveFormCoreTextInput
-                {...(field as ControllerRenderProps<
-                  UserCrawlerData,
-                  'type' | 'name' | 'description' | 'weaponSystem'
-                >)}
-                placeholder=""
-                editable={!disabled}
-                selectTextOnFocus={!disabled}
-                multiline={multiline}
-                keyboardType={numeric ? 'number-pad' : 'default'}
-                style={inputStyle}
-              />
-            )
-          }}
-          name={name}
-        />
-      ) : (
-        <LiveFormCoreTextInput
-          placeholder=""
-          editable
-          selectTextOnFocus
-          multiline={multiline}
-          keyboardType={numeric ? 'number-pad' : 'default'}
-          style={inputStyle}
-          value={forceValue}
-        />
-      )}
+      <LiveFormCoreTextInput
+        placeholder=""
+        editable
+        selectTextOnFocus
+        multiline={multiline}
+        keyboardType={numeric ? 'number-pad' : 'default'}
+        style={inputStyle}
+        value={value}
+      />
     </LiveFormFrame>
   )
 }

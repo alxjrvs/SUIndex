@@ -1,22 +1,26 @@
 import { View } from 'react-native'
 import colors from '~/colors'
-import { ComponentLikeData } from '~/context/reference/models/types'
-import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
 import { TechLevelDisplay } from '../TechLevelDisplay'
 import { RequiredSlotsDisplay } from '../RequiredSlotsDisplay'
 import { SalvageValueDisplay } from '../SalvageValueDisplay'
-import { isMechChassis } from '~/context/reference/models/guards'
+import { TechLevel } from '~/context/reference/models/types'
 
 type Props = {
+  techLevel?: TechLevel
+  slotsRequired?: number
+  salvageValue?: number
+  visible?: boolean
   backgroundColor: (typeof colors)[keyof typeof colors]
-  component: BaseComponentLike<ComponentLikeData>
-  forceShow?: boolean
 }
 
-export function VerticalBar({ component, backgroundColor, forceShow }: Props) {
-  const shouldHide = !component.techLevel || isMechChassis(component)
-  const hide = forceShow ? false : shouldHide
-  if (hide) return null
+export function VerticalBar({
+  backgroundColor,
+  slotsRequired,
+  salvageValue,
+  techLevel,
+  visible,
+}: Props) {
+  if (!visible) return null
 
   return (
     <View
@@ -32,9 +36,9 @@ export function VerticalBar({ component, backgroundColor, forceShow }: Props) {
         minWidth: 35,
       }}
     >
-      <TechLevelDisplay techLevel={component.techLevel} />
-      <RequiredSlotsDisplay slotsRequired={component.slotsRequired} />
-      <SalvageValueDisplay salvageValue={component.salvageValue} />
+      <TechLevelDisplay techLevel={techLevel} />
+      <RequiredSlotsDisplay slotsRequired={slotsRequired} />
+      <SalvageValueDisplay salvageValue={salvageValue} />
     </View>
   )
 }
