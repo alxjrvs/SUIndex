@@ -1,14 +1,18 @@
 import { View, ViewStyle } from 'react-native'
 import colors, { levelToBlue } from '~/colors'
 import { AppText } from '../AppText'
-import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLikeData } from '~/rulesReferences/types'
+import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
+import { ComponentLikeData } from '~/context/reference/models/types'
 import { Header } from './Header'
 import { VerticalBar } from './VerticalBar'
-import { isAbility, isMechChassis, isRollTable } from '~/rulesReferences/guards'
+import {
+  isAbility,
+  isMechChassis,
+  isRollTable,
+} from '~/context/reference/models/guards'
 import { ChassisStats } from './ChassisStats'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
-import { RollTable } from '~/rulesReferences/RollTable'
+import { RollTable } from '~/context/reference/models/RollTable'
 import { PropsWithChildren } from 'react'
 
 type Props = {

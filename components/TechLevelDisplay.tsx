@@ -1,5 +1,5 @@
 import colors from '~/colors'
-import { TechLevel } from '~/rulesReferences/types'
+import { TechLevel } from '~/context/reference/models/types'
 import { AppText } from './AppText'
 import { PropsWithChildren } from 'react'
 

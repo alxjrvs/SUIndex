@@ -1,4 +1,4 @@
-import { RollTable } from '~/rulesReferences/RollTable'
+import { RollTable } from '~/context/reference/models/RollTable'
 import { ComponentContainer } from './ComponentContainer'
 
 type Props = {

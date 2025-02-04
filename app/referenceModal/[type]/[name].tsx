@@ -4,8 +4,8 @@ import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated'
 import { ComponentContainer } from '~/components/ComponentContainer'
 import { ReferenceState } from '~/context/reference/types'
 import { useReference } from '~/context/reference/useReference'
-import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLikeData } from '~/rulesReferences/types'
+import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
+import { ComponentLikeData } from '~/context/reference/models/types'
 import { ReferencableComponentType } from '~/types'
 
 const allowedTypes = ['trait', 'module', 'system']

@@ -1,10 +1,10 @@
 import { StyleSheet, View } from 'react-native'
-import { ComponentAction } from '~/rulesReferences/ComponentAction'
+import { ComponentAction } from '~/context/reference/models/ComponentAction'
 import { AppText } from '../AppText'
 import { DataList } from '../DataList'
 import { ActivationCost } from './ActivationCost'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
-import { RollTable } from '~/rulesReferences/RollTable'
+import { RollTable } from '~/context/reference/models/RollTable'
 import colors from '~/colors'
 
 type Props = {

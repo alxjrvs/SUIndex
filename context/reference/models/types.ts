@@ -1,6 +1,7 @@
 import { DataValue } from '~/types'
 
 export type TechLevel = 1 | 2 | 3 | 4 | 5 | 6 | undefined
+export type NumericTechLevel = Exclude<TechLevel, undefined>
 
 export interface ComponentLikeData {
   name?: string
@@ -17,7 +18,8 @@ export interface ComponentLikeData {
   actionType?: string
   salvageValue?: number
   rollTable?: RollTableReference
-  actions?: ActionData[]
+  actions?: ComponentLikeData[]
+  stats?: ChassisStats
 }
 
 interface BaseData extends ComponentLikeData {
@@ -58,14 +60,6 @@ interface StatBonusData {
   bonus: number
 }
 
-export interface ActionData extends BaseData {
-  activationCost: number | string
-  range: string
-  actionType: string
-  options: { label: string; value: string }[]
-  stats?: ChassisStats
-}
-
 export interface SystemModuleData extends BaseData {
   techLevel: TechLevel
   slotsRequired: number
@@ -78,7 +72,7 @@ export interface SystemModuleData extends BaseData {
   rollTable?: RollTableReference
   notes?: string
   activationCost?: number
-  actions?: ActionData[]
+  actions?: ComponentLikeData[]
 }
 
 export interface EquipmentData extends BaseData {
@@ -128,7 +122,7 @@ export type PatternReference = BaseData &
 
 export interface MechChassisData extends BaseData {
   stats: ChassisStats
-  chassis_abilities: Partial<ActionData>[]
+  chassis_abilities: Partial<ComponentLikeData>[]
   patterns: PatternReference[]
 }
 

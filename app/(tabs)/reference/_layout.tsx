@@ -4,11 +4,17 @@ import colors from '~/colors'
 
 export default function ReferenceRoot() {
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.SUBlue }}>
+    <GestureHandlerRootView
+      style={{
+        flex: 1,
+        backgroundColor: colors.SUBlue,
+      }}
+    >
       <Drawer screenOptions={{ headerStyle: { borderBottomWidth: 0 } }}>
         <Drawer.Screen
           name="index"
           options={{
+            drawerItemStyle: { display: 'none' },
             drawerLabel: 'Home',
             title: 'Salvage Union Reference',
           }}

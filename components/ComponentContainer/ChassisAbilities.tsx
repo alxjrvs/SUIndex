@@ -1,13 +1,13 @@
 import { View } from 'react-native'
 import colors from '~/colors'
-import { MechChassis } from '~/rulesReferences/MechChassis'
+import { MechChassis } from '~/context/reference/models/MechChassis'
 import { AppText } from '../AppText'
-import { ActionData } from '~/rulesReferences/types'
+import { ActionData } from '~/context/reference/models/types'
 import { DataList } from '../DataList'
 import { generateDataListValues } from '~/utils/formatters'
 import { ChassisStats } from './ChassisStats'
 import MiniRollTableDisplay from '../MiniRollTableDisplay'
-import { RollTable } from '~/rulesReferences/RollTable'
+import { RollTable } from '~/context/reference/models/RollTable'
 
 export function ChassisAbilities({
   abilities,

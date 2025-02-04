@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { PatternReference } from '~/rulesReferences/types'
+import { PatternReference } from '~/context/reference/models/types'
 import { AppText } from '../AppText'
 import { capitalizeFirstLetter, collapseMultiples } from '~/utils/formatters'
 import { CollapsibleInfoRow } from '../CollapsibleInfoRow'

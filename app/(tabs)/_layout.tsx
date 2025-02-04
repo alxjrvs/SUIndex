@@ -24,6 +24,19 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="myStuff"
+        options={{
+          title: 'My Stuff',
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons
+              size={28}
+              name="robot-excited"
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   )
 }

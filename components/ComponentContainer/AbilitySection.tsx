@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import colors from '~/colors'
-import { HydratedAbilities } from '~/rulesReferences/PlayerClass'
+import { HydratedAbilities } from '~/context/reference/models/PlayerClass'
 import { AppText } from '../AppText'
 import { AbilityList } from './AbilityList'
 

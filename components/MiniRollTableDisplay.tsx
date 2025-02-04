@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { DigestedRollTable } from '~/rulesReferences/types'
+import { DigestedRollTable } from '~/context/reference/models/types'
 import { AppText } from './AppText'
 import colors from '~/colors'
 

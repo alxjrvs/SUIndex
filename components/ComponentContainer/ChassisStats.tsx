@@ -1,8 +1,8 @@
 import { View } from 'react-native'
 import colors from '~/colors'
 import { AppText } from '../AppText'
-import { TechLevel } from '~/rulesReferences/types'
-import { ChassisStats as Stats } from '~/rulesReferences/types'
+import { TechLevel } from '~/context/reference/models/types'
+import { ChassisStats as Stats } from '~/context/reference/models/types'
 import { PropsWithChildren } from 'react'
 
 type Props = {

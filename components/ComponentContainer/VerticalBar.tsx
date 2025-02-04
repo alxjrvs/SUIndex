@@ -1,11 +1,11 @@
 import { View } from 'react-native'
 import colors from '~/colors'
-import { ComponentLikeData } from '~/rulesReferences/types'
-import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
+import { ComponentLikeData } from '~/context/reference/models/types'
+import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
 import { TechLevelDisplay } from '../TechLevelDisplay'
 import { RequiredSlotsDisplay } from '../RequiredSlotsDisplay'
 import { SalvageValueDisplay } from '../SalvageValueDisplay'
-import { isMechChassis } from '~/rulesReferences/guards'
+import { isMechChassis } from '~/context/reference/models/guards'
 
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]

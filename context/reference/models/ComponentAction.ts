@@ -1,14 +1,14 @@
-import { ActionData } from './types'
+import { ComponentLikeData } from './types'
 import {
   formatActivationCost,
   generateDataListValues,
 } from '~/utils/formatters'
 
 export class ComponentAction {
-  private action: ActionData
+  private action: ComponentLikeData
   private activationCurrency: string
 
-  constructor(action: ActionData, activationCurrency: string) {
+  constructor(action: ComponentLikeData, activationCurrency: string) {
     this.action = action
     this.activationCurrency = activationCurrency
   }
@@ -35,6 +35,7 @@ export class ComponentAction {
 
   get activationCost() {
     return formatActivationCost({
+      activationCost: '',
       ...this.action,
       activationCurrency: this.activationCurrency,
     })

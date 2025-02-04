@@ -1,17 +1,10 @@
-import { View, ViewStyle } from 'react-native'
+import { ViewStyle } from 'react-native'
 import colors from '~/colors'
-import { AppText } from '../AppText'
-import { BaseComponentLike } from '~/rulesReferences/BaseComponentLike'
-import { ComponentLikeData } from '~/rulesReferences/types'
+import { BaseComponentLike } from '~/context/reference/models/BaseComponentLike'
+import { ComponentLikeData } from '~/context/reference/models/types'
 import { Action } from './Action'
-import {
-  isCrawlerType,
-  isMechChassis,
-  isPlayerClass,
-} from '~/rulesReferences/guards'
+import { isMechChassis, isPlayerClass } from '~/context/reference/models/guards'
 import { ChassisAbilities } from './ChassisAbilities'
-import MiniRollTableDisplay from '../MiniRollTableDisplay'
-import { RollTable } from '~/rulesReferences/RollTable'
 import { ChassisPatterns } from './ChassisPatterns'
 import { PropsWithChildren } from 'react'
 import { AbilitySection } from './AbilitySection'
@@ -37,7 +30,6 @@ export function ComponentContainer({
 }: PropsWithChildren<Props>) {
   const isChassis = isMechChassis(component)
   const isPC = isPlayerClass(component)
-  const isCrawerT = isCrawlerType(component)
   return (
     <ComponentFrame
       style={style}
@@ -51,18 +43,6 @@ export function ComponentContainer({
       {component.actions.map((action, index) => (
         <Action key={component.name + action.name + index} action={action} />
       ))}
-      {isCrawerT &&
-        component.abilities.map((ability) => (
-          <View key={ability.name}>
-            <AppText variant="bold">{ability.name}</AppText>
-            <AppText>{ability.description}</AppText>
-            {ability.rollTable && (
-              <MiniRollTableDisplay
-                rollTable={RollTable.digestedRollTable(ability.rollTable)}
-              />
-            )}
-          </View>
-        ))}
       {isPC && (
         <AbilitySection
           headerColor={colors.SUBrick}

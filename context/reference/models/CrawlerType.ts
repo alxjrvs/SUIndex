@@ -12,4 +12,7 @@ export class CrawlerType extends BaseComponentLike<CrawlerTypeData> {
   get abilities() {
     return this.data.abilities
   }
+  get actions() {
+    return this.data.abilities.map((action) => new ComponentAction(action, ''))
+  }
 }

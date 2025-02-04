@@ -1,7 +1,7 @@
-import { ActionData } from '~/rulesReferences/types'
+import { ComponentLikeData } from '~/context/reference/models/types'
 import { DataValue } from '~/types'
 
-type Data = Partial<ActionData> & { activationCurrency: string }
+type Data = Partial<ComponentLikeData> & { activationCurrency: string }
 
 export function generateDataListValues(data: Data): DataValue[] {
   const details: DataValue[] = []

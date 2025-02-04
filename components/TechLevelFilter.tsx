@@ -1,6 +1,6 @@
 import { View, Pressable } from 'react-native'
 import colors from '~/colors'
-import { TechLevel } from '~/rulesReferences/types'
+import { TechLevel } from '~/context/reference/models/types'
 import { TechLevelDisplay } from './TechLevelDisplay'
 
 export function TechLevelFilter({

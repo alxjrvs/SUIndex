@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import colors from '~/colors'
-import { Ability } from '~/rulesReferences/Ability'
+import { Ability } from '~/context/reference/models/Ability'
 import { AppText } from '../AppText'
 import { CollapsibleInfoRow } from '../CollapsibleInfoRow'
 import { ComponentFrame } from './ComponentFrame'
