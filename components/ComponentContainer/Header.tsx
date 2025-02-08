@@ -7,7 +7,7 @@ import { PropsWithChildren } from 'react'
 
 type Props = {
   backgroundColor: (typeof colors)[keyof typeof colors]
-  header: string
+  header?: string
   details?: DataValue[]
   level?: number | string
 }
@@ -50,17 +50,19 @@ export function Header({
               justifyContent: 'space-between',
             }}
           >
-            <AppText
-              variant="bold"
-              style={{
-                maxWidth: '80%',
-                fontSize: 25,
-                flexWrap: 'wrap',
-                color: colors.white,
-              }}
-            >
-              {header}
-            </AppText>
+            {header && (
+              <AppText
+                variant="bold"
+                style={{
+                  maxWidth: '80%',
+                  fontSize: 25,
+                  flexWrap: 'wrap',
+                  color: colors.white,
+                }}
+              >
+                {header}
+              </AppText>
+            )}
             {children}
           </View>
           <View style={{ minHeight: 15 }}>

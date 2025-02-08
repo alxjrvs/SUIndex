@@ -1,16 +1,16 @@
 import { StyleProp, View, ViewStyle } from 'react-native'
 import colors, { levelToBlue } from '~/colors'
-import { AppText } from '../AppText'
-import { Header } from './Header'
-import { VerticalBar } from './VerticalBar'
-import MiniRollTableDisplay from '../MiniRollTableDisplay'
+import { AppText } from './AppText'
+import { Header } from './ComponentContainer/Header'
+import { VerticalBar } from './ComponentContainer/VerticalBar'
+import MiniRollTableDisplay from './MiniRollTableDisplay'
 import { RollTable } from '~/context/reference/models/RollTable'
 import { PropsWithChildren } from 'react'
 import { TechLevel } from '~/context/reference/models/types'
 import { DataValue } from '~/types'
 
 type Props = {
-  header: string
+  header: string | undefined
   style?: ViewStyle
   hidePadding?: boolean
   headerColor?: (typeof colors)[keyof typeof colors]
@@ -19,7 +19,7 @@ type Props = {
   level?: string | number | undefined
   contentContainerStyle?: StyleProp<ViewStyle>
   techLevel?: TechLevel
-  details: DataValue[]
+  details?: DataValue[]
   description?: string
   notes?: string
   rollTable?: Record<string, string>
@@ -27,7 +27,7 @@ type Props = {
   slotsRequired?: number
 }
 
-export function ComponentFrame({
+export function Frame({
   header,
   style,
   hidePadding = false,
@@ -62,7 +62,12 @@ export function ComponentFrame({
       >
         {headerContent}
       </Header>
-      <View style={{ flexDirection: 'row' }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          backgroundColor: verticalBarBackground || backgroundColor,
+        }}
+      >
         <VerticalBar
           visible={showVerticalBar}
           techLevel={techLevel}
@@ -78,6 +83,7 @@ export function ComponentFrame({
               flexDirection: 'column',
               gap: 30,
               justifyContent: 'center',
+              backgroundColor: colors.white,
             },
             contentContainerStyle,
           ]}

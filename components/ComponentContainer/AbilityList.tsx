@@ -3,7 +3,7 @@ import colors from '~/colors'
 import { Ability } from '~/context/reference/models/Ability'
 import { AppText } from '../AppText'
 import { CollapsibleInfoRow } from '../CollapsibleInfoRow'
-import { ComponentFrame } from './ComponentFrame'
+import { Frame } from '../Frame'
 
 export function AbilityList({
   abilities,
@@ -25,7 +25,7 @@ export function AbilityList({
         {abilities
           .sort((a, b) => Number(a.level) - Number(b.level))
           .map((ability) => (
-            <ComponentFrame
+            <Frame
               verticalBarBackground={headerColor}
               level={ability.level}
               header={ability.name || ''}
@@ -34,7 +34,7 @@ export function AbilityList({
               key={ability.name}
             >
               <AppText>{ability.effect}</AppText>
-            </ComponentFrame>
+            </Frame>
           ))}
       </View>
     </CollapsibleInfoRow>
