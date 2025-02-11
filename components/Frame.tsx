@@ -13,6 +13,7 @@ type Props = {
   header: string | undefined
   style?: ViewStyle
   hidePadding?: boolean
+  hideSidebar?: boolean
   headerColor?: (typeof colors)[keyof typeof colors]
   verticalBarBackground?: (typeof colors)[keyof typeof colors]
   headerContent?: React.ReactNode
@@ -44,12 +45,18 @@ export function Frame({
   notes,
   salveageValue,
   slotsRequired,
+  hideSidebar = false,
 }: PropsWithChildren<Props>) {
   const backgroundColor = headerColor || levelToBlue(techLevel)
   const forceVerticalBar =
-    verticalBarBackground !== undefined ? !!verticalBarBackground : false
+    verticalBarBackground !== undefined && hideSidebar === false
+      ? !!verticalBarBackground
+      : false
   const showVerticalBar =
-    forceVerticalBar || techLevel !== undefined || level !== undefined
+    !hideSidebar &&
+    (forceVerticalBar || techLevel !== undefined || level !== undefined)
+
+  console.log('Show Vertical Bar', techLevel)
   return (
     <View
       style={[{ backgroundColor: colors.SULightBlue, width: '100%' }, style]}
@@ -83,7 +90,7 @@ export function Frame({
               flexDirection: 'column',
               gap: 30,
               justifyContent: 'center',
-              backgroundColor: colors.white,
+              backgroundColor: colors.SULightBlue,
             },
             contentContainerStyle,
           ]}

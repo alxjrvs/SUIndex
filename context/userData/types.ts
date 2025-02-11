@@ -18,31 +18,24 @@ export type Storage = {
   salvageValue: number
 }
 
+type NpcData = {
+  name: string
+  description: string
+  hp: number
+}
+
 export type CrawlerBay = {
   name: string
   damaged: boolean
-  npcHP: number
-  npcName: string
-  npcDescription: string
+  npc: NpcData
 }
 
 export type UserCrawlerData = {
   type: string
+  npc: NpcData
   techLevel: NumericTechLevel
   spDamage: number
   name: string
   description: string
   weaponSystem: string
-  bays: {
-    storage: CrawlerBay & { storage: Storage[] }
-    commandBay: CrawlerBay
-    mechBay: CrawlerBay
-    armamentDay: CrawlerBay
-    craftingBay: CrawlerBay
-    tradingBay: CrawlerBay
-    medBay: CrawlerBay
-    pilotBay: CrawlerBay
-    armoury: CrawlerBay
-    cantina: CrawlerBay
-  }
 }

@@ -40,9 +40,10 @@ export function ComponentContainer({
   return (
     <Frame
       style={style}
-      verticalBarBackground={verticalBarBackground}
+      verticalBarBackground={isChassis ? undefined : verticalBarBackground}
       hidePadding={hidePadding}
       header={header || component.name || ''}
+      hideSidebar={isChassis}
       headerColor={headerColor}
       techLevel={component.techLevel}
       headerContent={isChassis && <ChassisStats stats={component.stats} />}
