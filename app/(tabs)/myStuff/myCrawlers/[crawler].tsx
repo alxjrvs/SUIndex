@@ -1,8 +1,9 @@
 import { ScrollView } from 'react-native-gesture-handler'
 import colors from '~/colors'
 import { AppText } from '~/components/AppText'
+import { CollapsibleInfoRow } from '~/components/CollapsibleInfoRow'
+import { ComponentContainer } from '~/components/ComponentContainer'
 import { Frame } from '~/components/Frame'
-import { StatList } from '~/components/StatList'
 import { useReference } from '~/context/reference/useReference'
 import { createUserCrawler } from '~/context/userData/fixtures/createUserCrawler'
 
@@ -32,18 +33,14 @@ export default function CrawlerShow() {
         header={haven.name}
         headerColor={colors.SUPink}
         description={haven.description}
-        headerContent={
-          <StatList
-            stats={[
-              {
-                label: 'Structure Pts.',
-                value: 20,
-              },
-            ]}
-          />
-        }
       >
-        <AppText>Weapon System: </AppText>
+        <AppText>Weapon System</AppText>
+        <CollapsibleInfoRow
+          header={weaponSystem.name || ''}
+          headerColor={colors.SUOrange}
+        >
+          <ComponentContainer component={weaponSystem} />
+        </CollapsibleInfoRow>
       </Frame>
     </ScrollView>
   )

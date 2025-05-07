@@ -34,7 +34,7 @@ export type UserCrawlerData = {
   type: string
   npc: NpcData
   techLevel: NumericTechLevel
-  spDamage: number
+  sp: number
   name: string
   description: string
   weaponSystem: string
