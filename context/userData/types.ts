@@ -30,4 +30,5 @@ export type UserCrawlerData = {
   name: string
   description: string
   weaponSystem: string
+  bays: CrawlerBay[]
 }
