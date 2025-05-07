@@ -18,17 +18,9 @@ export type Storage = {
   salvageValue: number
 }
 
-type NpcData = {
-  name: string
-  description: string
-  hp: number
-}
+type NpcData = { name: string; description: string; hp: number }
 
-export type CrawlerBay = {
-  name: string
-  damaged: boolean
-  npc: NpcData
-}
+export type CrawlerBay = { name: string; damaged: boolean; npc: NpcData }
 
 export type UserCrawlerData = {
   type: string
